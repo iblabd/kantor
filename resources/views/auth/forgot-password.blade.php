@@ -10,6 +10,8 @@
                         <h2>Forgot Password</h2>
                     </div>
                     <div class="card-body">
+                        @include('layouts.alert')
+
                         <form class="needs-validation" method="POST" action="{{ route('password.email') }}" novalidate>
                             @csrf
                             <div class="form-group mb-4">

@@ -10,7 +10,10 @@
                         <h2>Reset Password</h2>
                     </div>
                     <div class="card-body">
-                        <form class="needs-validation" action="{{ route('password.update') }}" method="POST" novalidate>
+                        @include('layouts.alert')
+
+                        <form class="needs-validation" method="POST" action="{{ route('password.update') }}" novalidate>
+                            @csrf
                             <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
                             <div class="form-group mb-4">
@@ -49,7 +52,7 @@
                                 <label for="inputConfirmPassword">Confirm password</label>
                                 <div class="input-group">
                                     <input class="form-control" type="password" id="show_hide_password2"
-                                        placeholder="Confirm new password" name="confirmpassword" pattern=".{8,}"
+                                        placeholder="Confirm new password" name="password_confirmation" pattern=".{8,}"
                                         required>
                                     <div class="input-group-prepend">
                                         <div class="input-group-text"><a><i onclick="showPassword2();"
@@ -75,5 +78,6 @@
     </body>
 
 @include('layouts.validation')
+@include('layouts.showpassword')
 
 @endsection
