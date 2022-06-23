@@ -1,39 +1,56 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@include('dashboard')
 
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
-        </div>
+<script>
+    $(document).ready(function() {
+        $('#verify-modal').modal({
+            backdrop: 'static',
+            keyboard: false
+        })
+        $("#verify-modal").modal('show');
+        setTimeout(
+            function() {
+                $("#btn-resend").prop('disabled', false)
+                $("#please-wait").hide();
+            }, 30000);
 
-        @if (session('status') == 'verification-link-sent')
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ __('A new verification link has been sent to the email address you provided during registration.') }}
+    });
+</script>
+<div id="verify-modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Verify Email</h5>
             </div>
-        @endif
 
-        <div class="mt-4 flex items-center justify-between">
-            <form method="POST" action="{{ route('verification.send') }}">
-                @csrf
-
-                <div>
-                    <x-button>
-                        {{ __('Resend Verification Email') }}
-                    </x-button>
-                </div>
-            </form>
-
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-
-                <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900">
-                    {{ __('Log Out') }}
-                </button>
-            </form>
+            <div class="modal-body">
+                @if (session('status') == 'verification-link-sent')
+                    <div id="please-wait" class="alert alert-warning" role="alert">
+                        Please wait 30 seconds before resend
+                    </div>
+                    <p>A new verification link has been sent to the email address you provided during registration.</p>
+                    <form method="POST" action="{{ route('verification.send') }}">
+                        @csrf
+                        <div>
+                            <div class="mt-5 mb-2 d-grid">
+                                <button id="btn-resend" class="btn btn-primary form-control-lg" type="submit"
+                                    disabled>Resend Verification Email</button>
+                            </div>
+                        </div>
+                    </form>
+                @else
+                    <p>Before getting started, could you verify your email address by clicking on the link we just
+                        emailed. Press the button under to receive a verification link.</p>
+                    <form method="POST" action="{{ route('verification.send') }}">
+                        @csrf
+                        <div>
+                            <div class="mt-5 mb-2 d-grid">
+                                <button class="btn btn-primary form-control-lg" type="submit">Send Verification
+                                    Email</button>
+                            </div>
+                        </div>
+                    </form>
+                @endif
+            </div>
         </div>
-    </x-auth-card>
-</x-guest-layout>
+    </div>
+</div>
