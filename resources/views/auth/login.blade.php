@@ -43,8 +43,19 @@
                                     </div>
                                 </div>
                                 <span class="help-block ">
-                                    <p class="mt-0 mb-0 text-end lh-sm"><a href="{{ route('password.request') }}">Forgot
-                                            password?</a></p>
+                                    <div class="d-flex flex-row-reverse justify-content-between">
+                                        <div class="p-2 mt-0 mb-0 lh-sm">
+                                            <a href="{{ route('password.request') }}">Forgot password?</a>
+                                        </div>
+                                        <div class="p-2 mt-0 mb-0 lh-sm">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="remember_me" name="remember">
+                                                <label class="form-check-label" for="remember_me">
+                                                  Remember me
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </span>
                             </div>
 
