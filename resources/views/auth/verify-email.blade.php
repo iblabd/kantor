@@ -28,27 +28,41 @@
                         Please wait 30 seconds before resend
                     </div>
                     <p>A new verification link has been sent to the email address you provided during registration.</p>
-                    <form method="POST" action="{{ route('verification.send') }}">
-                        @csrf
-                        <div>
-                            <div class="mt-5 mb-2 d-grid">
-                                <button id="btn-resend" class="btn btn-primary form-control-lg" type="submit"
-                                    disabled>Resend Verification Email</button>
+                    <div class="mt-5">
+                        <form method="POST" action="{{ route('verification.send') }}">
+                            @csrf
+                            <div class="my-2 d-grid">
+                                <button class="btn btn-primary form-control-lg" type="submit">Resend Verification
+                                    Email</button>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+
+                        <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <div class="d-grid">
+                                <button class="btn btn-link link-danger form-control-lg" type="submit">Logout</button>
+                            </div>
+                        </form>
+                    </div>
                 @else
                     <p>Before getting started, could you verify your email address by clicking on the link we just
                         emailed. Press the button under to receive a verification link.</p>
-                    <form method="POST" action="{{ route('verification.send') }}">
-                        @csrf
-                        <div>
-                            <div class="mt-5 mb-2 d-grid">
+                    <div class="mt-5">
+                        <form method="POST" action="{{ route('verification.send') }}">
+                            @csrf
+                            <div class="my-2 d-grid">
                                 <button class="btn btn-primary form-control-lg" type="submit">Send Verification
                                     Email</button>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+
+                        <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <div class="d-grid">
+                                <button class="btn btn-link link-danger form-control-lg" type="submit">Logout</button>
+                            </div>
+                        </form>
+                    </div>
                 @endif
             </div>
         </div>
