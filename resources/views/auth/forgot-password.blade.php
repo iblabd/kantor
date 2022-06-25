@@ -10,20 +10,16 @@
                         <h2>Forgot Password</h2>
                     </div>
                     <div class="card-body">
-                        @include('layouts.alert')
+                        <x-auth-validation-errors :errors="$errors" />
 
                         <form class="needs-validation" method="POST" action="{{ route('password.email') }}" novalidate>
                             @csrf
                             <div class="form-group mb-4">
-                                <label for="inputPassword">Email</label>
-                                <input class="form-control" id="inputEmail" type="text"
-                                    placeholder="Enter email address" name="email" :value="old('email')"
-                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
-                                <div class="invalid-feedback">
-                                    Please enter a valid email.
-                                </div>
+                                <label for="inputEmail">Email</label>
+                                <input class="form-control" id="inputEmail" type="email" placeholder="Enter email address"
+                                    name="email" data-error="#inputEmail-error" :value="old('email')" required>
+                                <span class="my-0 text-danger" id="inputEmail-error" for="inputEmail"></span>
                             </div>
-
 
                             <div class="mt-5 mb-2 d-grid">
                                 <button class="btn btn-primary form-control-lg" type="submit">Send Password Reset Link</button>

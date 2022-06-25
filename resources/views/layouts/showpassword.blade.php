@@ -1,6 +1,6 @@
 <script>
     function showPassword() {
-        var x = document.getElementById("show_hide_password");
+        var x = document.getElementById("password");
         if (x.type === "password") {
             x.type = "text";
             $("#show_hide_password_icon").removeClass("fa-eye-slash").addClass("fa-eye");
@@ -11,7 +11,7 @@
     }
 
     function showPassword2() {
-        var x = document.getElementById("show_hide_password2");
+        var x = document.getElementById("password_confirmation");
         if (x.type === "password") {
             x.type = "text";
             $("#show_hide_password_icon2").removeClass("fa-eye-slash").addClass("fa-eye");

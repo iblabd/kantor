@@ -11,37 +11,32 @@
                     </div>
 
                     <div class="card-body">
-                        @include('layouts.alert')
+                        <x-auth-validation-errors :errors="$errors" />
 
 
-                        <form class="needs-validation" method="POST" action="{{ route('login') }}" novalidate>
+                        <form class="needs-validation" method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="form-group mb-4">
-                                <label for="inputPassword">Email</label>
-                                <input class="form-control" id="inputEmail" type="text" placeholder="Enter email address"
-                                    name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
-                                <div class="invalid-feedback">
-                                    Please enter a valid email.
-                                </div>
-                                <div class="valid-feedback">
-                                    Looks good!
-                                </div>
+                                <label for="inputEmail">Email</label>
+                                <input class="form-control" id="inputEmail" type="email" placeholder="Enter email address"
+                                    name="email" data-error="#inputEmail-error" required>
+                                <span class="my-0 text-danger" id="inputEmail-error" for="inputEmail"></span>
                             </div>
 
                             <div class="form-group mb-4">
                                 <label for="inputPassword">Password</label>
                                 <div class="input-group">
-                                    <input class="form-control" type="password" id="show_hide_password"
-                                        placeholder="Enter password" name="password" pattern=".{8,}" required>
+                                    <input class="form-control" type="password" id="inputPassword"
+                                        placeholder="Enter password" name="password" data-error="#inputPassword-error"
+                                        required>
                                     <div class="input-group-prepend">
                                         <div class="input-group-text"><a><i onclick="showPassword();"
                                                     class="fa fa-eye-slash py-2" id="show_hide_password_icon"
                                                     aria-hidden="true"></i></a></div>
                                     </div>
-                                    <div class="invalid-feedback">
-                                        Incorrect password.
-                                    </div>
+                                    </input>
                                 </div>
+                                <span class="my-0 text-danger" id="inputPassword-error" for="inputPassword"></span>
                                 <span class="help-block ">
                                     <div class="d-flex flex-row-reverse justify-content-between">
                                         <div class="p-2 mt-0 mb-0 lh-sm">
@@ -49,9 +44,10 @@
                                         </div>
                                         <div class="p-2 mt-0 mb-0 lh-sm">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="remember_me" name="remember">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="remember_me" name="remember">
                                                 <label class="form-check-label" for="remember_me">
-                                                  Remember me
+                                                    Remember me
                                                 </label>
                                             </div>
                                         </div>
