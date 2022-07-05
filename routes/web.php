@@ -14,9 +14,13 @@ use App\Http\Controllers\PengumumanController;
 |
 */
 
+// Route::get('/', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
 Route::get('/', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 Route::get('/pengumuman/edit', [PengumumanController::class, 'edit']);
 Route::put('/pengumuman/edit', [PengumumanController::class, 'update']);
