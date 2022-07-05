@@ -21,7 +21,7 @@ Route::get('/', function () {
 Route::get('/pengumuman/edit', [PengumumanController::class, 'edit']);
 Route::put('/pengumuman/edit', [PengumumanController::class, 'update']);
 Route::get('/pengumuman', [PengumumanController::class, 'index']);
-Route::get('/', [PengumumanController::class, 'pengumuman']);
+Route::get('/pen', [PengumumanController::class, 'pengumuman']);
 Route::get('/pengumuman/add', [PengumumanController::class, 'create']);
 Route::post('/pengumuman/add', [PengumumanController::class, 'store']);
 Route::get('/pengumuman', [PengumumanController::class, 'show']);
