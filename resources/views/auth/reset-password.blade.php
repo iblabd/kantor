@@ -26,7 +26,7 @@
                             <div class="form-group mb-4">
                                 <label for="inputPassword">Password</label>
                                 <div class="input-group">
-                                    <input class="form-control" type="password" id="inputPassword"
+                                    <input class="form-control" type="password" id="password"
                                         placeholder="Enter password" name="password" data-error="#inputPassword-error"
                                         required>
                                     <div class="input-group-prepend">
