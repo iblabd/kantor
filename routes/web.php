@@ -18,13 +18,13 @@ Route::get('/', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/pengumuman/edit', [PengumumanController::class, 'edit'])->middleware(['auth', 'verified'])->name('dashboard');
-Route::put('/pengumuman/edit', [PengumumanController::class, 'update'])->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/pengumuman', [PengumumanController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/pen', [PengumumanController::class, 'pengumuman'])->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/pengumuman/add', [PengumumanController::class, 'create'])->middleware(['auth', 'verified'])->name('dashboard');
-Route::post('/pengumuman/add', [PengumumanController::class, 'store'])->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/pengumuman', [PengumumanController::class, 'show'])->middleware(['auth', 'verified'])->name('dashboard');
-Route::delete('/pengumuman', [PengumumanController::class, 'destroy'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/pengumuman/edit', [PengumumanController::class, 'edit']);
+Route::put('/pengumuman/edit', [PengumumanController::class, 'update']);
+Route::get('/pengumuman', [PengumumanController::class, 'index']);
+Route::get('/', [PengumumanController::class, 'pengumuman']);
+Route::get('/pengumuman/add', [PengumumanController::class, 'create']);
+Route::post('/pengumuman/add', [PengumumanController::class, 'store']);
+Route::get('/pengumuman', [PengumumanController::class, 'show']);
+Route::delete('/pengumuman', [PengumumanController::class, 'destroy']);
 
 require __DIR__.'/auth.php';
