@@ -20,22 +20,13 @@
                     <a href="#"><i class="fa-solid fa-house"></i>Overview</a>
                 </li>
                 <li>
-                    <!--masuknya ke profile setting -->
-                    <a href="#">
-                        <i class="glyphicon glyphicon-user"></i>
-                        Account Settings </a>
+                    <a href="#"><i class="fa-solid fa-user"></i>Account Settings</a>
                 </li>
                 <li>
-                    <!--masuknya ke todo -->
-                    <a href="#" target="_blank">
-                        <i class="glyphicon glyphicon-ok"></i>
-                        Tasks </a>
+                    <a href="#"><i class="fa-solid fa-check"></i>Tasks</a>
                 </li>
                 <li>
-                    <!--masuknya ke absensi -->
-                    <a href="#">
-                        <i class="glyphicon glyphicon-flag"></i>
-                        Absensi </a>
+                    <a href="#"><i class="fa-solid fa-flag"></i>Absensi</a>
                 </li>
             </ul>
         </div>
