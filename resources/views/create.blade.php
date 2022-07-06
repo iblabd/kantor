@@ -1,30 +1,49 @@
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Pengumuman Kantor</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   </head>
   <body>
-    <h1>Buat Pengumuman Baru</h1>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-    <form action="{{ url('pengumuman/add') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-    <div class="card">
-        <div class="card-header">
-          Buat Baru
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Buat Pengumuman</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/pengumuman">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/create">Buat Pengumuman</a>
+              </li>
+          </div>
         </div>
-        <div class="card-body">
-          <h5 class="card-title">Silahkan Tulis Pengumuman Baru</h5>
-          <div class="form-group">
-            <label for="isi">Isi Pengumuman</label>
-            <input type="text" class="form-control" id="isi" name="isi" placeholder="isi">
-        </div>
-          <a href="#" class="save">Save</a>
-        </div>
+      </nav>
+      <div class="col-lg-8">
+      <div class="container">
+        <form method="POST" action="{{ route('addNewItem') }}">
+            @csrf
+            <div class="mb-3">
+              <label for="judul" class="form-label">Judul</label>
+              <input type="text" class="form-control" id="judul" name="judul">
+            </div>
+            <div class="mb-3">
+                <label for="isi" class="form-label">isi</label>
+                <input type="text" class="form-control" id="isi" name="isi">
+              </div>
+              <div class="mb-3">
+                <label for="tanggal" class="form-label">tanggal</label>
+                <input type="date" class="form-control" id="tanggal" name="waktu">
+              </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
       </div>
-    </form>
-</body>
-
+    </div>
+  </body>
 </html>
