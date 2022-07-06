@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Pengumuman;
+use Illuminate\Http\Request;
 
 class PengumumanController extends Controller
 {
@@ -14,8 +14,13 @@ class PengumumanController extends Controller
      */
     public function index()
     {
-        $pengumuman = Pengumuman::all();
-        return view('pengumuman.index', ['pengumuman' => $pengumuman]);
+
+        return view('pengumuman', [
+            'pengumumans' => Pengumuman::all()
+        ]);
+        // // $pengumumans = Pengumuman::latest()->paginate(5);
+        // return view('pengumuman',compact('pengumuman'))
+        //       ->with('i',(request()->input('page', 1) -1 )* 5);
     }
 
     /**
@@ -25,7 +30,7 @@ class PengumumanController extends Controller
      */
     public function create()
     {
-        return view('pengumuman.create');
+        return view('create');
     }
 
     /**
@@ -36,15 +41,19 @@ class PengumumanController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $request->validate([
-            'isi' => 'required'
-        ]);
-        $pengumuman = Pengumuman::create([
-            'isi' => $request->isi
-        ]);
-        return back()->with('success', 'Pengumuman has been added.');
-    }
+            'judul' => 'required',
+            'isi' => 'required',
+            'waktu' => 'required',
 
+        ]);
+
+        Pengumuman::create($request->all());
+
+        return redirect()->route('pengumuman')
+              ->with('success','Pengumuman created successfully.');
+    }
 
     /**
      * Display the specified resource.
@@ -52,11 +61,9 @@ class PengumumanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Pengumuman $pengumuman)
     {
-        $pengumuman = Pengumuman::find($id);
-        $pengumuman = Pengumuman::all();
-        return view('pengumumans.show', ['pengumuman' => $pengumuman, 'pengumuman' => $pengumuman]);
+        // return view('pengumuman');
     }
 
     /**
@@ -67,8 +74,8 @@ class PengumumanController extends Controller
      */
     public function edit($id)
     {
-        $pengumuman = Pengumuman::find($id);
-        return view('pengumuman.edit', ['pengumuman' => $pengumuman]);
+        Pengumuman::find()->$id;
+        return view('edit',["pengumuman"=>$pengumuman]);
     }
 
     /**
@@ -81,15 +88,15 @@ class PengumumanController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'isi' => 'required',
+
         ]);
 
-        $pengumuman = Pengumuman::find($id);
-        $pengumuman->isi = $request->isi;
-        $pengumuman->save();
+        $pengumuman->update($request->all());
 
-        return back()->with('success', 'Pengumuman has been updated.');
+        return redirect()->route('pengumuman')
+         ->with('success','Pengumuman updated successfully');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -97,10 +104,15 @@ class PengumumanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Pengumuman $pengumuman)
     {
-        $pengumuman = Pengumuman::find($id);
         $pengumuman->delete();
-        return redirect('pengumuman')->with('success', 'Pengumuman has been deleted.');
+
+        return redirect()->route('pengumuman')
+        ->with('success','Pengumuman deleted successfully');
+    }
+
+    public function pengumuman(){
+        return view('pengumuman');
     }
 }
