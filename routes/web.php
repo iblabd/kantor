@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PengumumanController;
+use App\Http\Controllers\TodosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,5 +31,6 @@ Route::get('/pengumuman/add', [PengumumanController::class, 'create']);
 Route::post('/pengumuman/add', [PengumumanController::class, 'store']);
 Route::get('/pengumuman', [PengumumanController::class, 'show']);
 Route::delete('/pengumuman', [PengumumanController::class, 'destroy']);
+Route::get('/dashboard', [DashboardController::class, 'index']);
 
 require __DIR__.'/auth.php';
