@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PengumumanController;
+use App\Http\Controllers\KaryawanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,5 +31,11 @@ Route::get('/pengumuman/add', [PengumumanController::class, 'create']);
 Route::post('/pengumuman/add', [PengumumanController::class, 'store']);
 Route::get('/pengumuman', [PengumumanController::class, 'show']);
 Route::delete('/pengumuman', [PengumumanController::class, 'destroy']);
+
+Route::get('admin/createKaryawan', [KaryawanController::class, 'create'])->name('admin.create');
+Route::post('admin/createKaryawan/execute', [KaryawanController::class, 'store'])->name('admin.create.execute');
+
+Route::get('home/pegawai', [KaryawanController::class, 'index'])->middleware(['auth'])->name('pegawai');
+Route::get('home/pegawai/{karyawan:id}/status', [KaryawanController::class, 'show'])->middleware(['auth'])->name('detailPegawai');
 
 require __DIR__.'/auth.php';
