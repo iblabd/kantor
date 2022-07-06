@@ -5,6 +5,7 @@ use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TodosController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,10 +34,14 @@ Route::get('/todo', [TodosController::class, 'index'])->name('todo');
 Route::get('/todo/create', [TodosController::class, 'create']);
 Route::post('/todo/create', [TodosController::class, 'store']);
 
-Route::get('admin/createKaryawan', [KaryawanController::class, 'create'])->name('admin.create');
-Route::post('admin/createKaryawan/execute', [KaryawanController::class, 'store'])->name('admin.create.execute');
-Route::get('home/pegawai', [KaryawanController::class, 'index'])->middleware(['auth'])->name('pegawai');
-Route::get('home/pegawai/{karyawan:id}/status', [KaryawanController::class, 'show'])->middleware(['auth'])->name('detailPegawai');
+
 
 require __DIR__.'/auth.php';
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/admin/createKaryawan', [KaryawanController::class, 'create'])->name('admin.create');
+Route::post('/admin/createKaryawan/execute', [KaryawanController::class, 'store'])->name('admin.create.execute');
+Route::get('/home/pegawai', [KaryawanController::class, 'index'])->middleware(['auth'])->name('pegawai');
+Route::get('/home/pegawai/{karyawan:id}/status', [KaryawanController::class, 'show'])->middleware(['auth'])->name('detailPegawai');
 
+Route::patch('/absen/{kehadiran}', [PresentsController::class, 'checkOut'])->name('kehadiran.check-out');
+Route::post('/absen', [PresentsController::class, 'checkIn'])->name('kehadiran.check-in');
