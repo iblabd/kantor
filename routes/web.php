@@ -31,6 +31,14 @@ Route::get('/pengumuman/add', [PengumumanController::class, 'create']);
 Route::post('/pengumuman/add', [PengumumanController::class, 'store']);
 Route::get('/pengumuman', [PengumumanController::class, 'show']);
 Route::delete('/pengumuman', [PengumumanController::class, 'destroy']);
-Route::get('/dashboard', [DashboardController::class, 'index']);
+// Route::get('/dashboard', [DashboardController::class, 'index']);
+
+Route::resource('todo', 'TodosController');
+
+// Route::get('/dashboard', 'DashboardController@index') -> name ('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/todo', [TodosController::class, 'index'])->name('todo');
+Route::get('/todo/create', [TodosController::class, 'create']);
+Route::post('/todo/create', [TodosController::class, 'store']);
 
 require __DIR__.'/auth.php';
