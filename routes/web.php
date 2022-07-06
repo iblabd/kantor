@@ -49,3 +49,10 @@ Route::get('home/pegawai', [KaryawanController::class, 'index'])->middleware(['a
 Route::get('home/pegawai/{karyawan:id}/status', [KaryawanController::class, 'show'])->middleware(['auth'])->name('detailPegawai');
 
 require __DIR__.'/auth.php';
+Route::get('/',[PengumumanController::class, 'index'])->name('pengumuman');
+Route::get('/pengumuman/create',[PengumumanController::class,'create']);
+Route::post('/pengumuman/create/execute',[PengumumanController::class,'store'])->name('addNewItem');
+Route::get('/pengumuman/{id}',[PengumumanController::class,'show']);
+Route::get('/pengumuman/{id}/edit',[PengumumanController::class,'edit']);
+Route::put('/pengumuman/{id}',[PengumumanController::class,'update']);
+Route::get('/pengumuman/{pengumuman:id}/delete',[PengumumanController::class,'destroy'])->name('delete');
