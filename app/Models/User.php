@@ -51,7 +51,7 @@ class User extends Authenticatable
 
     public function presents()
     {
-        return $this->hasMany('App\Present');
+        return $this->hasMany(Present::class);
     }
 }
 
