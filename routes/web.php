@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\TodosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,15 @@ Route::get('/pengumuman/add', [PengumumanController::class, 'create']);
 Route::post('/pengumuman/add', [PengumumanController::class, 'store']);
 Route::get('/pengumuman', [PengumumanController::class, 'show']);
 Route::delete('/pengumuman', [PengumumanController::class, 'destroy']);
+// Route::get('/dashboard', [DashboardController::class, 'index']);
+
+Route::resource('todo', 'TodosController');
+
+// Route::get('/dashboard', 'DashboardController@index') -> name ('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/todo', [TodosController::class, 'index'])->name('todo');
+Route::get('/todo/create', [TodosController::class, 'create']);
+Route::post('/todo/create', [TodosController::class, 'store']);
 
 Route::get('admin/createKaryawan', [KaryawanController::class, 'create'])->name('admin.create');
 Route::post('admin/createKaryawan/execute', [KaryawanController::class, 'store'])->name('admin.create.execute');
