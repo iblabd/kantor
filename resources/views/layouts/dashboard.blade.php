@@ -2,7 +2,6 @@
 <style>
     /* Profile sidebar */
     .profile-sidebar {
-        padding: 20px 24px 10px 0;
         background: #fafcfd;
     }
 
@@ -93,6 +92,7 @@
 
     .profile-usermenu ul li.active a {
         color: #5b9bd1;
+        border-radius: 4px;
         background-color: #f6f9fb;
         border-left: 2px solid #5b9bd1;
         width: auto;
@@ -103,7 +103,6 @@
     .dashboard-content {
         color: #5a7391;
         padding: 20px;
-        background: #fff;
         min-height: 100%;
     }
 </style>
@@ -115,7 +114,7 @@
         <div class="row profile">
             @include('layouts.navbar')
             <div class="col-md-9">
-                <div class="dashboard-content">
+                <div class="dashboard-content my-4">
                     @yield('content')
                 </div>
             </div>

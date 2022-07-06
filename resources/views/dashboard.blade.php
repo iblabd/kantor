@@ -4,5 +4,9 @@
 
 
 @section('content')
-<p>Haloo</p>
+@role('admin')
+            <p>Saya admin!</p>
+        @else
+            <p>Saya bukan admin...</p>
+        @endrole
 @endsection
