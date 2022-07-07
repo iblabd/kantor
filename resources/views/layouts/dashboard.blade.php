@@ -1,9 +1,6 @@
 @extends('layouts.app')
 <style>
     /* Profile sidebar */
-    .profile-sidebar {
-        background: #fafcfd;
-    }
 
     .profile-userpic img {
         float: none;
@@ -113,8 +110,8 @@
     <div class="container">
         <div class="row profile">
             @include('layouts.navbar')
-            <div class="col-md-9">
-                <div class="dashboard-content my-4">
+            <div class="col-md-9 mt-4">
+                <div class="dashboard-content">
                     @yield('content')
                 </div>
             </div>

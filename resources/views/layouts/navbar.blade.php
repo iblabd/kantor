@@ -1,5 +1,9 @@
+@php($navlink = Route::currentRouteName())
+
+
+
 <div class="col-md-3 mt-5">
-    <div class="profile-sidebar border rounded">
+    <div class="profile-sidebar bg-white border rounded">
         <div class="profile-userpic">
             {{-- <img src="" class="img-responsive" alt=""> --}}
         </div>
@@ -12,12 +16,14 @@
             </div>
         </div>
         <div class="profile-usermenu">
-            <ul class="nav">
-                <li class="active">
-                    <a href="#"><i class="fa-solid fa-house"></i>Overview</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa-solid fa-user"></i>Account Settings</a>
+            <ul class="nav flex-column">
+
+
+                <li class="{{ $navlink == 'dashboard' ? 'active' : '' }}"><a href="{{ route('dashboard') }}"><i
+                            class="fa-solid fa-house"></i>Overview</a></li>
+
+                <li class="{{ $navlink == '' ? 'active' : '' }}"><a href="#"><i
+                            class="fa-solid fa-user"></i>Account Settings</a>
                 </li>
                 <li>
                     <a href="#"><i class="fa-solid fa-check"></i>Tasks</a>
@@ -26,7 +32,9 @@
                     <a href="#"><i class="fa-solid fa-flag"></i>Absensi</a>
                 </li>
                 <li>
-                    <a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a>
+                    <a href="#"
+                        onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i
+                            class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a>
                 </li>
                 <form id="logout-form" method="POST" action="{{ route('logout') }}">
                     @csrf
