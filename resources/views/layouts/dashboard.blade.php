@@ -12,6 +12,14 @@
         border-radius: 50% !important;
     }
 
+    li .submenu {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
     .profile-usertitle {
         text-align: center;
         margin-top: 20px;
@@ -106,7 +114,6 @@
 
 
 @section('main')
-
     <div class="container">
         <div class="row profile">
             @include('layouts.navbar')
