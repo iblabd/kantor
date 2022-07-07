@@ -17,33 +17,10 @@
         </div>
         <div class="profile-usermenu">
             <ul class="nav flex-column" id="nav_accordion">
-
                 <li class="{{ $navlink == 'dashboard' ? 'active' : '' }}"><a href="{{ route('dashboard') }}"><i
                             class="fa-solid fa-house"></i>Overview</a></li>
-
-
-                <div class="accordion accordion-flush" id="accordionFlushExample">
-                    <li class="accordion-item {{ $navlink == 'dashboard' ? 'active' : '' }}">
-                        <h2 class="accordion-header" id="flush-headingOne">
-                            <a class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#flush-collapseOne" aria-expanded="false"
-                                aria-controls="flush-collapseOne">
-                                Account Settings
-                            </a>
-                        </h2>
-                        <div id="flush-collapseOne" class="accordion-collapse collapse"
-                            aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                            {{-- content --}}
-                            twss
-                        </div>
-                    </li>
-                </div>
-
                 <li class="{{ $navlink == '' ? 'active' : '' }}"><a href="#"><i
                             class="fa-solid fa-user"></i>Account Settings</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa-solid fa-check"></i>Tasks</a>
                 </li>
                 <li>
                     <a href="#"><i class="fa-solid fa-flag"></i>Absensi</a>
