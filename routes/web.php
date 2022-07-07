@@ -30,7 +30,7 @@ Route::get('/pengumuman/{pengumuman:id}/delete',[PengumumanController::class,'de
 
 Route::resource('todo', 'TodosController');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+Route::get('/', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 Route::get('/todo', [TodosController::class, 'index'])->name('todo');
 Route::get('/todo/create', [TodosController::class, 'create']);
 Route::post('/todo/create', [TodosController::class, 'store']);

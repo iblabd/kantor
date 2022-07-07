@@ -16,11 +16,11 @@
             </div>
         </div>
         <div class="profile-usermenu">
-            <ul class="nav flex-column" id="nav_accordion">
+            <ul class="nav flex-column">
                 <li class="{{ $navlink == 'dashboard' ? 'active' : '' }}"><a href="{{ route('dashboard') }}"><i
-                            class="fa-solid fa-house"></i>Overview</a></li>
-                <li class="{{ $navlink == '' ? 'active' : '' }}"><a href="#"><i
-                            class="fa-solid fa-user"></i>Account Settings</a>
+                            class="fa-solid fa-house"></i>Dasbor</a></li>
+                <small class="profile-usertitle-name">Pegawai</small>
+                <li class="{{ $navlink == 'pegawai' ? 'active' : '' }}"><a href="{{ route('pegawai') }}"><i class="fa-solid fa-user-group"></i>Pegawai</a>
                 </li>
                 <li>
                     <a href="#"><i class="fa-solid fa-flag"></i>Absensi</a>

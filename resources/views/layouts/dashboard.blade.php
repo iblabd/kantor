@@ -12,14 +12,6 @@
         border-radius: 50% !important;
     }
 
-    li .submenu {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-
     .profile-usertitle {
         text-align: center;
         margin-top: 20px;
@@ -62,6 +54,12 @@
     .profile-usermenu ul li {
         min-width: 100%;
         padding: 8px 12px 8px 12px;
+    }
+
+    .profile-usermenu ul small {
+        padding: 0px 12px;
+        margin: 0px;
+        font-size: 16px;
     }
 
     .profile-usermenu ul li:last-child {
