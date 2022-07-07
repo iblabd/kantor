@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Present extends Model
 {
     use HasFactory;
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'user_id', 'tanggal', 'keterangan', 'jam_masuk', 'jam_keluar'
+    ];
 
     /**
      * Indicates if the model should be timestamped.

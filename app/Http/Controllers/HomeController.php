@@ -41,6 +41,6 @@ class HomeController extends Controller
                 }
             }
         }
-        return view('home', compact('present','libur','holiday'));
+        return view('kehadiran.absen', compact('present','libur','holiday'));
     }
 }

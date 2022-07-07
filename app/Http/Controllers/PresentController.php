@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Present;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PresentController extends Controller
@@ -34,16 +35,36 @@ class PresentController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    // /**
+    //  * Store a newly created resource in storage.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function store(Request $request)
+    // {
+    //     $present = Present::whereUserId($request->user_id)->whereTanggal(date('Y-m-d'))->first();
+    //     if ($present) {
+    //         return redirect()->back()->with('error','Absensi hari ini telah terisi');
+    //     }
+    //     $data = $request->validate([
+    //         'keterangan'    => ['required'],
+    //         'user_id'    => ['required']
+    //     ]);
+    //     $data['tanggal'] = date('Y-m-d');
+    //     if ($request->keterangan == 'Masuk' || $request->keterangan == 'Telat') {
+    //         $data['jam_masuk'] = $request->jam_masuk;
+    //         if (strtotime($data['jam_masuk']) >= strtotime('07:00:00') && strtotime($data['jam_masuk']) <= strtotime('08:00:00')) {
+    //             $data['keterangan'] = 'Masuk';
+    //         } else if (strtotime($data['jam_masuk']) > strtotime('08:00:00') && strtotime($data['jam_masuk']) <= strtotime('17:00:00')) {
+    //             $data['keterangan'] = 'Telat';
+    //         } else {
+    //             $data['keterangan'] = 'Alpha';
+    //         }
+    //     }
+    //     Present::create($data);
+    //     return redirect()->back()->with('success','Kehadiran berhasil ditambahkan');
+    // }
 
     /**
      * Display the specified resource.
@@ -151,5 +172,12 @@ class PresentController extends Controller
 
         Present::create($data);
         return redirect()->back()->with('success','Check-in berhasil');
+    }
+
+    public function checkOut(Request $request, Present $kehadiran)
+    {
+        $data['jam_keluar'] = date('H:i:s');
+        $kehadiran->update($data);
+        return redirect()->back()->with('success', 'Check-out berhasil');
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TodosController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PresentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,7 @@ Route::get('/pengumuman/{pengumuman:id}/delete',[PengumumanController::class,'de
 
 Route::resource('todo', 'TodosController');
 
-Route::get('/', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 Route::get('/todo', [TodosController::class, 'index'])->name('todo');
 Route::get('/todo/create', [TodosController::class, 'create']);
 Route::post('/todo/create', [TodosController::class, 'store']);
@@ -37,11 +38,11 @@ Route::post('/todo/create', [TodosController::class, 'store']);
 
 
 require __DIR__.'/auth.php';
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/admin/createKaryawan', [KaryawanController::class, 'create'])->name('admin.create');
 Route::post('/admin/createKaryawan/execute', [KaryawanController::class, 'store'])->name('admin.create.execute');
-Route::get('/home/pegawai', [KaryawanController::class, 'index'])->middleware(['auth'])->name('pegawai');
-Route::get('/home/pegawai/{karyawan:id}/status', [KaryawanController::class, 'show'])->middleware(['auth'])->name('detailPegawai');
+Route::get('/dashboard/pegawai', [KaryawanController::class, 'index'])->middleware(['auth'])->name('pegawai');
+Route::get('/dashboard/pegawai/{karyawan:id}/status', [KaryawanController::class, 'show'])->middleware(['auth'])->name('detailPegawai');
 
-Route::patch('/absen/{kehadiran}', [PresentsController::class, 'checkOut'])->name('kehadiran.check-out');
-Route::post('/absen', [PresentsController::class, 'checkIn'])->name('kehadiran.check-in');
+Route::get('/absen', [HomeController::class, 'index'])->name('home');
+Route::patch('/absen/{kehadiran}', [PresentController::class, 'checkOut'])->name('kehadiran.check-out');
+Route::post('/absen', [PresentController::class, 'checkIn'])->name('kehadiran.check-in');
