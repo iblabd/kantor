@@ -21,11 +21,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 
-<body>
-    <header>
-
-    </header>
-
+<body class="bg-light">
     <main>
         @yield('main')
     </main>
