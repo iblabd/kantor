@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Karyawan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -44,6 +45,7 @@ class KaryawanController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     * @return \Illuminate\Database\QueryException $ex;
      */
     public function store(Request $request)
     {
@@ -57,11 +59,12 @@ class KaryawanController extends Controller
         $password = $parts[0];
         // dd($password);
 
-        $user = User::create([
-            'name'=>$request['nama'],
-            'email'=>$request['email'],
-            'password' => Hash::make($password),
-        ]);
+            $user = User::create([
+                'name'=>$request['nama'],
+                'email'=>$request['email'],
+                'password' => Hash::make($password),
+            ]);
+
 
         $request->validate([
             'file_upload' => 'nullable',
@@ -96,6 +99,7 @@ class KaryawanController extends Controller
             'rw'=>$request['rw'],
             'file_path'=>$fileName
         ]);
+
 
         // statment if user set admin
         if($request['adminRole'])

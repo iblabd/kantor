@@ -93,7 +93,7 @@
         display: block;
     }
 
-    .profile-usermenu ul li.active a {
+    .profile-usermenu ul li.active a {`
         color: #5b9bd1;
         border-radius: 4px;
         background-color: #f6f9fb;
@@ -112,7 +112,7 @@
 
 
 @section('main')
-    <div class="container">
+    <div class="container-fluid">
         <div class="row profile">
             @include('layouts.navbar')
             <div class="col-md-9 mt-4">

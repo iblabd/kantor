@@ -30,10 +30,11 @@ Route::group(['middleware' => ['web', 'auth']], function(){
         // admin route
         Route::get('/admin/createKaryawan', [KaryawanController::class, 'create'])->name('admin.create');
         Route::post('/admin/createKaryawan/execute', [KaryawanController::class, 'store'])->name('admin.create.execute');
+        Route::get('/dashboard/absen/rekap-kehadiran', [PresentController::class, 'index'])->name('kehadiran.index');
     });
     Route::group(['middleware' => ['role:admin|user']], function(){
         // absen route
-        Route::get('/dashboaard/absen', [HomeController::class, 'index'])->name('absen.kehadiran');
+        Route::get('/dashboard/absen', [PresentController::class, 'indexForAbsen'])->name('absen.kehadiran');
         Route::patch('/dashboard/absen/{kehadiran}', [PresentController::class, 'checkOut'])->name('kehadiran.check-out');
         Route::post('/dashboard/absen', [PresentController::class, 'checkIn'])->name('kehadiran.check-in');
 
@@ -43,7 +44,6 @@ Route::group(['middleware' => ['web', 'auth']], function(){
         Route::get('/dashboard/pegawai/{karyawan:id}/status', [KaryawanController::class, 'show'])->middleware(['auth'])->name('detailPegawai');
         // todo route
         Route::resource('todo', 'TodosController');
-        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::get('/todo', [TodosController::class, 'index'])->name('todo');
         Route::get('/todo/create', [TodosController::class, 'create']);
         Route::post('/todo/create', [TodosController::class, 'store']);
