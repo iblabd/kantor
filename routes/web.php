@@ -20,6 +20,9 @@ use App\Http\Controllers\PresentController;
 |
 */
 
+Route::get('/', function() {
+    return redirect()->route('dashboard');
+});
 
 // Route::get('/dashboard', [DashboardController::class, 'index']);
 require __DIR__.'/auth.php';
@@ -30,10 +33,14 @@ Route::group(['middleware' => ['web', 'auth']], function(){
         // admin route
         Route::get('/admin/createKaryawan', [KaryawanController::class, 'create'])->name('admin.create');
         Route::post('/admin/createKaryawan/execute', [KaryawanController::class, 'store'])->name('admin.create.execute');
-        Route::get('/dashboard/absen/rekap-kehadiran', [PresentController::class, 'index'])->name('kehadiran.index');
     });
     Route::group(['middleware' => ['role:admin|user']], function(){
+
+        Route::get('/dashboard', function(){
+            return view('dashboard');
+        })->name('dashboard');
         // absen route
+        Route::get('/dashboard/absen/rekap-kehadiran', [PresentController::class, 'index'])->name('kehadiran.index');
         Route::get('/dashboard/absen', [PresentController::class, 'indexForAbsen'])->name('absen.kehadiran');
         Route::patch('/dashboard/absen/{kehadiran}', [PresentController::class, 'checkOut'])->name('kehadiran.check-out');
         Route::post('/dashboard/absen', [PresentController::class, 'checkIn'])->name('kehadiran.check-in');
