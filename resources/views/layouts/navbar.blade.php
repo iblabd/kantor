@@ -23,7 +23,7 @@
                 <li class="{{ $navlink == 'pegawai' ? 'active' : '' }}"><a href="{{ route('pegawai') }}"><i class="fa-solid fa-user-group"></i>Pegawai</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa-solid fa-flag"></i>Absensi</a>
+                    <a href="{{ route('absen.kehadiran') }}"><i class="fa-solid fa-flag"></i>Absensi</a>
                 </li>
                 <li>
                     <a href="#"
