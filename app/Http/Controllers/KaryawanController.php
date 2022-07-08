@@ -6,6 +6,7 @@ use App\Models\Karyawan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class KaryawanController extends Controller
 {
@@ -62,6 +63,21 @@ class KaryawanController extends Controller
             'password' => Hash::make($password),
         ]);
 
+        $request->validate([
+            'file_upload' => 'nullable',
+            'file_upload.*' => 'image|mimes:jpeg,png,jpg'
+        ]);
+
+        if($request->hasFile('file_upload')){
+            $file = $request['file_upload'];
+            $extension = $file->getClientOriginalExtension();
+            $fileName = 'profile_'.time().'.'.$extension;
+            $file->storeAs('public/profile', $fileName);
+        }else{
+            $fileName = 'default.png';
+        }
+
+
         Karyawan::create([
             'user_id'=>$user->id,
             'nama'=>$request['nama'],
@@ -77,7 +93,8 @@ class KaryawanController extends Controller
             'kecamatan'=>$request['kecamatan'],
             'pos'=>$request['pos'],
             'rt'=>$request['rt'],
-            'rw'=>$request['rw']
+            'rw'=>$request['rw'],
+            'file_path'=>$fileName
         ]);
 
         // statment if user set admin
