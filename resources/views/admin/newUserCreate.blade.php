@@ -21,16 +21,16 @@
             @method('POST')
             <!-- nama lengkap -->
             <div class="form-group col-md-9">
-                <label for="username" class="form-label">Nama Lengkap</label>
+                <label for="username" class="form-label">Nama Lengkap<sup class="text-danger">*wajib</sup></label>
                 <input class="form-control" id="username" type="username" placeholder="Masukkan nama lengkap"
-                    name="username" data-error="#username-error" required>
+                    name="nama" data-error="#username-error" required>
                 <span class="my-0 text-danger" id="username-error" for="username"></span>
             </div>
             <!-- end of nama lengkap -->
 
             <!-- jenis kelamin -->
             <div class="form-group col-md-3">
-                <label for="jenisKelamin" class="form-label">Jenis Kelamin</label>
+                <label for="jenisKelamin" class="form-label">Jenis Kelamin<sup class="text-danger">*wajib</sup></label>
                 <select class="form-select" id="jenisKelamin" name="jenisKelamin" data-error="#jenisKelamin-error" required>
                     <option selected disabled>None</option>
                     <option>Laki-laki</option>
@@ -80,11 +80,11 @@
 
             <!-- nomor handphone -->
             <div class="form-group col-md-4">
-                <label for="nomorTelephone" class="form-label">Nomor Handphone</label>
+                <label for="nomorTelephone" class="form-label">Nomor Handphone<sup class="text-danger">*wajib</sup></label>
                 <div class="input-group">
                     <span class="input-group-text" id="nomorTelephone">+62</span>
                     <input type="text" class="form-control" id="nomorTelephone" aria-describedby="inputGroupPrepend2"
-                        placeholder="895XXXXXXX" name="telephone" data-error="#nomorTelephone-error">
+                        placeholder="895XXXXXXX" name="telephone" data-error="#nomorTelephone-error" required>
                 </div>
                 <span class="my-0 text-danger" id="nomorTelephone-error" for="nomorTelephone"></span>
             </div>
@@ -92,7 +92,7 @@
 
             <!-- email -->
             <div class="form-group col-md-8">
-                <label for="email" class="form-label">Email</label>
+                <label for="email" class="form-label">Email<sup class="text-danger">*wajib</sup></label>
                 <input class="form-control" id="email" type="email" placeholder="Enter email address" name="email"
                     data-error="#email-error" required>
                 <span class="my-0 text-danger" id="email-error" for="email"></span>
@@ -119,13 +119,13 @@
                 <span class="my-0 text-danger" id="kecamatan-error" for="kecamatan"></span>
             </div>
             <div class="form-group col-6">
-                <label for="kota" class="form-label">Kota</label>
+                <label for="kota" class="form-label">Kota<sup class="text-danger">*wajib</sup></label>
                 <input class="form-control" id="kota" type="text" placeholder="Kota" name="kota"
                     data-error="#kota-error" required>
                 <span class="my-0 text-danger" id="kota-error" for="kota"></span>
             </div>
             <div class="form-group col-6">
-                <label for="provinsi" class="form-label">Provinsi</label>
+                <label for="provinsi" class="form-label">Provinsi<sup class="text-danger">*wajib</sup></label>
                 <input class="form-control" id="provinsi" type="text" placeholder="Provinsi" name="provinsi"
                     data-error="#provinsi-error" required>
                 <span class="my-0 text-danger" id="provinsi-error" for="provinsi"></span>

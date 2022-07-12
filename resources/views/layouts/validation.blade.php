@@ -24,28 +24,28 @@
                     digits: true,
                     minlength: 5,
                     maxlength: 5
-                }
+                },
                 rt: {
                     digits: true,
                     maxlength: 3
-                }
+                },
                 rw: {
                     digits: true,
                     maxlength: 3
-                }
+                },
                 kota: {
                     number: false;
-                }
+                },
                 provinsi: {
                     number: false
-                }
+                },
                 kecamatan: {
                     number: false
-                }
+                },
                 kelurahan: {
                     number: false
-                }
-                username: {
+                },
+                nama: {
                     number: false
                 }
             }

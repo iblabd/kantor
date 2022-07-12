@@ -21,7 +21,7 @@ class CreateKaryawansTable extends Migration
             $table->enum('jenisKelamin', ['Laki-laki', 'Perempuan']);
             $table->enum('riwayatPendidikan', ['Sarjana', 'D1, D2, D3', 'SMA/SMK', 'Lainnya...'])->nullable();
             $table->string('jabatan')->nullable();
-            $table->string('telephone')->nullable();
+            $table->string('telephone');
             $table->string('email');
             $table->string('alamat')->nullable();
             $table->string('kota');
