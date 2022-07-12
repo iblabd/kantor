@@ -10,7 +10,7 @@
                             <span class="h2 font-weight-bold mb-0">{{ $masuk }}</span>
                         </div>
                         <div class="col-auto">
-                            <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
+                            <div class="icon icon-shape bg-success text-white rounded-circle shadow p-3">
                                 <i class="fas fa-check"></i>
                             </div>
                         </div>
@@ -27,7 +27,7 @@
                             <span class="h2 font-weight-bold mb-0">{{ $telat }}</span>
                         </div>
                         <div class="col-auto">
-                            <div class="icon icon-shape bg-gradient-yellow text-white rounded-circle shadow">
+                            <div class="icon icon-shape bg-warning text-white rounded-circle shadow p-3">
                             <i class="fas fa-business-time"></i>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                             <span class="h2 font-weight-bold mb-0">{{ $cuti }}</span>
                         </div>
                         <div class="col-auto">
-                            <div class="icon icon-shape bg-gradient-blue text-white rounded-circle shadow">
+                            <div class="icon icon-shape bg-primary text-white rounded-circle shadow p-3">
                                 <i class="fas fa-user-clock"></i>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
                             <span class="h2 font-weight-bold mb-0">{{ $alpha }}</span>
                         </div>
                         <div class="col-auto">
-                            <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                            <div class="icon icon-shape bg-danger text-white rounded-circle shadow p-3">
                                 <i class="fas fa-times"></i>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
     <div class="container">
         <div class="card shadow h-100">
             <div class="card-header">
-                <h5 class="m-0 pt-1 font-weight-bold float-left">Kehadiran</h5>
+                <h5 class="mb-1 pt-1 font-weight-bold float-left">Kehadiran</h5>
                 <form class="float-right" action="{{ route('kehadiran.excel-users') }}" method="get">
                     <input type="hidden" name="tanggal" value="{{ request('tanggal', date('Y-m-d')) }}">
                     <button class="btn btn-sm btn-primary" type="submit" title="Download"><i class="fas fa-download"></i></button>
@@ -110,7 +110,6 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>NRP</th>
                                 <th>Nama</th>
                                 <th>Keterangan</th>
                                 <th>Jam Masuk</th>
@@ -127,8 +126,7 @@
                                 @foreach ($presents as $present)
                                     <tr>
                                         <th>{{ $rank++ }}</th>
-                                        <td><a href="{{ route('users.show',$present->user) }}">{{ $present->user->nrp }}</a></td>
-                                        <td>{{ $present->user->nama }}</td>
+                                        <td>{{ $present->user->name }}</td>
                                         <td>{{ $present->keterangan }}</td>
                                         @if ($present->jam_masuk)
                                             <td>{{ date('H:i:s', strtotime($present->jam_masuk)) }}</td>

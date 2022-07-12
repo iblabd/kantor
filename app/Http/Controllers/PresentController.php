@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Present;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PresentController extends Controller
 {
@@ -22,7 +23,7 @@ class PresentController extends Controller
         $cuti = Present::whereTanggal(date('Y-m-d'))->whereKeterangan('cuti')->count();
         $alpha = Present::whereTanggal(date('Y-m-d'))->whereKeterangan('alpha')->count();
         $rank = $presents->firstItem();
-        return view('kehadiran', compact('presents','rank','masuk','telat','cuti','alpha'));
+        return view('kehadiran.absen-kehadiran', compact('presents','rank','masuk','telat','cuti','alpha'));
     }
 
     /**
@@ -51,6 +52,55 @@ class PresentController extends Controller
             }
         }
         return view('kehadiran.absen', compact('present','libur','holiday'));
+    }
+
+    public function search(Request $request)
+    {
+        $request->validate([
+            'tanggal' => ['required']
+        ]);
+        $presents = Present::whereTanggal($request->tanggal)->orderBy('jam_masuk')->paginate(6);
+        $masuk = Present::whereTanggal($request->tanggal)->whereKeterangan('masuk')->count();
+        $telat = Present::whereTanggal($request->tanggal)->whereKeterangan('telat')->count();
+        $cuti = Present::whereTanggal($request->tanggal)->whereKeterangan('cuti')->count();
+        $alpha = Present::whereTanggal($request->tanggal)->whereKeterangan('alpha')->count();
+        $rank = $presents->firstItem();
+        return view('kehadiran.absen-kehadiran', compact('presents','rank','masuk','telat','cuti','alpha'));
+    }
+
+    public function cari(Request $request, User $user)
+    {
+        $request->validate([
+            'bulan' => ['required']
+        ]);
+        $data = explode('-',$request->bulan);
+        $presents = Present::whereUserId($user->id)->whereMonth('tanggal',$data[1])->whereYear('tanggal',$data[0])->orderBy('tanggal','desc')->paginate(5);
+        $masuk = Present::whereUserId($user->id)->whereMonth('tanggal',$data[1])->whereYear('tanggal',$data[0])->whereKeterangan('masuk')->count();
+        $telat = Present::whereUserId($user->id)->whereMonth('tanggal',$data[1])->whereYear('tanggal',$data[0])->whereKeterangan('telat')->count();
+        $cuti = Present::whereUserId($user->id)->whereMonth('tanggal',$data[1])->whereYear('tanggal',$data[0])->whereKeterangan('cuti')->count();
+        $alpha = Present::whereUserId($user->id)->whereMonth('tanggal',$data[1])->whereYear('tanggal',$data[0])->whereKeterangan('alpha')->count();
+        $kehadiran = Present::whereUserId($user->id)->whereMonth('tanggal',$data[1])->whereYear('tanggal',$data[0])->whereKeterangan('telat')->get();
+        $totalJamTelat = 0;
+        foreach ($kehadiran as $present) {
+            $totalJamTelat = $totalJamTelat + (\Carbon\Carbon::parse($present->jam_masuk)->diffInHours(\Carbon\Carbon::parse('07:00:00')));
+        }
+        $url = 'https://kalenderindonesia.com/api/YZ35u6a7sFWN/libur/masehi/'.date('Y/m');
+        $kalender = file_get_contents($url);
+        $kalender = json_decode($kalender, true);
+        $libur = false;
+        $holiday = null;
+        if ($kalender['data'] != false) {
+            if ($kalender['data']['holiday']['data']) {
+                foreach ($kalender['data']['holiday']['data'] as $key => $value) {
+                    if ($value['date'] == date('Y-m-d')) {
+                        $holiday = $value['name'];
+                        $libur = true;
+                        break;
+                    }
+                }
+            }
+        }
+        return view('kehadiran.absen-kehadiran', compact('presents','user','masuk','telat','cuti','alpha','libur','totalJamTelat'));
     }
 
     /**
@@ -207,5 +257,10 @@ class PresentController extends Controller
         $data['jam_keluar'] = date('H:i:s');
         $kehadiran->update($data);
         return redirect()->back()->with('success', 'Check-out berhasil');
+    }
+
+    public function excelUsers(Request $request)
+    {
+        return Excel::download(new UsersPresentExport($request->tanggal), 'kehadiran-'.$request->tanggal.'.xlsx');
     }
 }

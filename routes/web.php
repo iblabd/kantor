@@ -33,15 +33,25 @@ Route::group(['middleware' => ['web', 'auth']], function(){
         // admin route
         Route::get('/admin/createKaryawan', [KaryawanController::class, 'create'])->name('admin.create');
         Route::post('/admin/createKaryawan/execute', [KaryawanController::class, 'store'])->name('admin.create.execute');
+
+        // absen route
+        Route::get('/dashboard/absen', [PresentController::class, 'indexForAbsen'])->name('absen.kehadiran');
+        Route::get('/dashboard/absen/rekap-absen', [PresentController::class, 'index'])->name('kehadiran.index');
+        Route::get('/dashboard/absen/cari', [PresentController::class, 'search'])->name('kehadiran.search');
+        Route::get('/dashboard/absen/{user}/cari', 'PresentsController@cari')->name('kehadiran.cari');
+        Route::get('/dashboard/absen/excel-users', [PresentController::class, 'excelUsers'])->name('kehadiran.excel-users');
+        Route::get('/dashboard/absen/{user}/excel-user', 'PresentsController@excelUser')->name('kehadiran.excel-user');
+        Route::post('/dashboard/absen/ubah', 'PresentsController@ubah')->name('ajax.get.kehadiran');
+        Route::patch('/dashboard/absen/{kehadiran}', 'PresentsController@update')->name('kehadiran.update');
+        Route::post('/dashboard/absen', 'PresentsController@store')->name('kehadiran.store');
     });
     Route::group(['middleware' => ['role:admin|user']], function(){
 
         Route::get('/dashboard', function(){
             return view('dashboard');
         })->name('dashboard');
-        // absen route
-        Route::get('/dashboard/absen/rekap-kehadiran', [PresentController::class, 'index'])->name('kehadiran.index');
-        Route::get('/dashboard/absen', [PresentController::class, 'indexForAbsen'])->name('absen.kehadiran');
+
+        // absen checkin/out route
         Route::patch('/dashboard/absen/{kehadiran}', [PresentController::class, 'checkOut'])->name('kehadiran.check-out');
         Route::post('/dashboard/absen', [PresentController::class, 'checkIn'])->name('kehadiran.check-in');
 
