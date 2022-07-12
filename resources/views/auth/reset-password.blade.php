@@ -26,7 +26,7 @@
                             <div class="form-group mb-4">
                                 <label for="inputPassword">Password</label>
                                 <div class="input-group">
-                                    <input class="form-control" type="password" id="password"
+                                    <input class="form-control" type="password" id="inputPassword"
                                         placeholder="Enter password" name="password" data-error="#inputPassword-error"
                                         required>
                                     <div class="input-group-prepend">
@@ -42,7 +42,7 @@
                             <div class="form-group mb-4">
                                 <label for="inputConfirmPassword">Confirm password</label>
                                 <div class="input-group">
-                                    <input class="form-control" type="password" id="password_confirmation"
+                                    <input class="form-control" type="password" id="inputPasswordConfirmation"
                                         placeholder="Confirm new password" name="password_confirmation"
                                         data-error="#password_confirmation-error" required>
                                     <div class="input-group-prepend">

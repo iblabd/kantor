@@ -2,7 +2,7 @@
 
 
 @section('content')
-<x-auth-validation-errors :errors="$errors" />
+    <x-auth-validation-errors :errors="$errors" />
     <div class="bg-white border rounded px-4 pt-4">
         <nav class="mt-4" aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -15,107 +15,138 @@
             <h2>Tambah Pegawai</h2>
         </div>
 
-        <form class="row g-3 col-lg-12 mt-4" action="{{ route('admin.create.execute') }}" method="POST" enctype="multipart/form-data">
+        <form class="row g-3 col-lg-12 mt-4 needs-validation" action="{{ route('admin.create.execute') }}" method="POST"
+            enctype="multipart/form-data">
             @csrf
             @method('POST')
             <!-- nama lengkap -->
-            <div class="col-md-9">
+            <div class="form-group col-md-9">
                 <label for="username" class="form-label">Nama Lengkap</label>
-                <input type="text" class="form-control" id="username" name="nama">
+                <input class="form-control" id="username" type="username" placeholder="Masukkan nama lengkap"
+                    name="username" data-error="#username-error" required>
+                <span class="my-0 text-danger" id="username-error" for="username"></span>
             </div>
             <!-- end of nama lengkap -->
 
             <!-- jenis kelamin -->
-            <div class="col-md-3">
+            <div class="form-group col-md-3">
                 <label for="jenisKelamin" class="form-label">Jenis Kelamin</label>
-                <select id="jenisKelamin" class="form-select" name="jenisKelamin">
+                <select class="form-select" id="jenisKelamin" name="jenisKelamin" data-error="#jenisKelamin-error" required>
                     <option selected disabled>None</option>
                     <option>Laki-laki</option>
                     <option>Perempuan</option>
                 </select>
+                <span class="my-0 text-danger" id="jenisKelamin-error" for="jenisKelamin"></span>
             </div>
             <!-- end of jenis kelamin -->
 
             <!-- Tanggal Lahir -->
-            <div class="col-md-4">
+            <div class="form-group col-md-4">
                 <label for="tanggalLahir" class="form-label">Tanggal Lahir</label>
-                <input type="date" class="form-control" id="tanggalLahir" name="tanggalLahir">
+                <input class="form-control" id="tanggalLahir" type="date" placeholder="Tanggal Lahir" name="tanggalLahir"
+                    data-error="#tanggalLahir-error">
+                <span class="my-0 text-danger" id="tanggalLahir-error" for="tanggalLahir"></span>
             </div>
             <!-- end of Tanggal Lahir -->
 
             <!-- pendidikan -->
-            <div class="col-md-8">
+            <div class="form-group col-md-8">
                 <label for="Pendidikan" class="form-label">Riwayat Pendidikan</label>
-                <select id="Pendidikan" class="form-select" name="riwayatPendidikan">
+                <select class="form-select" id="Pendidikan" name="riwayatPendidikan" data-error="#Pendidikan-error">
                     <option selected disabled>None</option>
                     <option>Sarjana</option>
                     <option>D1, D2, D3</option>
                     <option>SMA/SMK</option>
                     <option>Lainnya...</option>
                 </select>
+                <span class="my-0 text-danger" id="Pendidikan-error" for="Pendidikan"></span>
             </div>
             <!-- end of pendidikan -->
 
             <!-- jabatan -->
-            <div class="col-md-12">
+            <div class="form-group col-md-12">
                 <label for="jabatan" class="form-label">Jabatan Sebagai</label>
                 <input class="form-control" list="datalistOptions" id="jabatan" placeholder="Menjabat sebagai..."
                     name="jabatan">
-                <datalist id="datalistOptions">
-                    <option value="Pimpinan">
-                    <option value="Wakil Pimpinan">
-                    <option value="Pegawai">
-                </datalist>
+                    <datalist id="datalistOptions">
+                        <option value="Pimpinan">
+                        <option value="Wakil Pimpinan">
+                        <option value="Pegawai">
+                    </datalist>
+                </select>
+                <span class="my-0 text-danger" id="jabatan-error" for="Pendidikan"></span>
             </div>
             <!-- end of jabatan -->
 
             <!-- nomor handphone -->
-            <div class="col-md-4">
+            <div class="form-group col-md-4">
                 <label for="nomorTelephone" class="form-label">Nomor Handphone</label>
                 <div class="input-group">
                     <span class="input-group-text" id="nomorTelephone">+62</span>
                     <input type="text" class="form-control" id="nomorTelephone" aria-describedby="inputGroupPrepend2"
-                        name="telephone">
+                        placeholder="895XXXXXXX" name="telephone" data-error="#nomorTelephone-error">
                 </div>
-                <div id="emailHelp" class="form-text">contoh pengisian 896*******</div>
+                <span class="my-0 text-danger" id="nomorTelephone-error" for="nomorTelephone"></span>
             </div>
             <!-- end of nomor handphone -->
 
             <!-- email -->
-            <div class="col-md-8">
+            <div class="form-group col-md-8">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email">
+                <input class="form-control" id="email" type="email" placeholder="Enter email address" name="email"
+                    data-error="#email-error" required>
+                <span class="my-0 text-danger" id="email-error" for="email"></span>
             </div>
             <!-- end of email -->
 
             <!-- alamat   -->
-            <div class="col-12">
-                <label for="kota" class="form-label">Kota</label>
-                <input type="text" class="form-control" id="kota" name="kota">
-            </div>
-            <div class="col-6">
+            <div class="form-group col-12">
                 <label for="alamat" class="form-label">Alamat</label>
-                <input type="text" class="form-control" id="alamat" name="alamat">
+                <input class="form-control" id="alamat" type="text" placeholder="Masukkan alamat" name="alamat"
+                    data-error="#alamat-error">
+                <span class="my-0 text-danger" id="alamat-error" for="alamat"></span>
             </div>
-            <div class="col-6">
+            <div class="form-group col-6">
                 <label for="kelurahan" class="form-label">Kelurahan/Desa</label>
-                <input type="text" class="form-control" id="kelurahan" name="kelurahan">
+                <input class="form-control" id="kelurahan" type="text" placeholder="Kelurahan" name="kelurahan"
+                    data-error="#kelurahan-error">
+                <span class="my-0 text-danger" id="kelurahan-error" for="kelurahan"></span>
             </div>
-            <div class="col-md-8">
+            <div class="form-group col-6">
                 <label for="kecamatan" class="form-label">Kecamatan</label>
-                <input type="text" class="form-control" id="kecamatan" name="kecamatan">
+                <input class="form-control" id="kecamatan" type="text" placeholder="Kecamatan" name="kecamatan"
+                    data-error="#kecamatan-error">
+                <span class="my-0 text-danger" id="kecamatan-error" for="kecamatan"></span>
             </div>
-            <div class="col-md-1">
+            <div class="form-group col-6">
+                <label for="kota" class="form-label">Kota</label>
+                <input class="form-control" id="kota" type="text" placeholder="Kota" name="kota"
+                    data-error="#kota-error" required>
+                <span class="my-0 text-danger" id="kota-error" for="kota"></span>
+            </div>
+            <div class="form-group col-6">
+                <label for="provinsi" class="form-label">Provinsi</label>
+                <input class="form-control" id="provinsi" type="text" placeholder="Provinsi" name="provinsi"
+                    data-error="#provinsi-error" required>
+                <span class="my-0 text-danger" id="provinsi-error" for="provinsi"></span>
+            </div>
+            <div class="form-group col-3">
                 <label for="rt" class="form-label">RT</label>
-                <input type="text" class="form-control" id="rt" name="rt">
+                <input class="form-control" id="rt" type="text" placeholder="001" name="rt"
+                    data-error="#rt-error">
+                <span class="my-0 text-danger" id="rt-error" for="rt"></span>
             </div>
-            <div class="col-md-1">
+            <div class="form-group col-3">
                 <label for="rw" class="form-label">RW</label>
-                <input type="text" class="form-control" id="rw" name="rw">
+                <input class="form-control" id="rw" type="text" placeholder="001" name="rw"
+                    data-error="#rw-error">
+                <span class="my-0 text-danger" id="rw-error" for="rw"></span>
             </div>
-            <div class="col-md-2">
+            <div class="form-group col-6">
                 <label for="kodePos" class="form-label">Kode Pos</label>
-                <input type="text" class="form-control" id="kodePos" name="pos">
+                <input class="form-control" id="kodePos" type="text" placeholder="Kode Pos" name="pos"
+                    data-error="#kodePos-error">
+                <span class="my-0 text-danger" id="kodePos-error" for="kodePos"></span>
             </div>
             <!-- end of alamat -->
 
@@ -243,18 +274,18 @@
         </form>
     </div>
     <!-- <div class="col-12">
-                <label for="jenisKelamin2" class="form-label">Jenis Kelamin</label>
-                <div class="none">
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Pria">
-                    <label class="form-check-label" for="inlineRadio1">Pria</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Wanita">
-                    <label class="form-check-label" for="inlineRadio2">Wanita</label>
-                  </div>
-                </div>
-              </div> -->
+                    <label for="jenisKelamin2" class="form-label">Jenis Kelamin</label>
+                    <div class="none">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Pria">
+                        <label class="form-check-label" for="inlineRadio1">Pria</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Wanita">
+                        <label class="form-check-label" for="inlineRadio2">Wanita</label>
+                      </div>
+                    </div>
+                  </div> -->
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
         integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous">
@@ -269,4 +300,5 @@
             trigger: 'focus'
         })
     </script>
+    @include('layouts.validation')
 @endsection

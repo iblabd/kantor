@@ -20,8 +20,12 @@
                 <li class="{{ $navlink == 'dashboard' ? 'active' : '' }}"><a href="{{ route('dashboard') }}"><i
                             class="fa-solid fa-house"></i>Dasbor</a></li>
                 <small class="profile-usertitle-name">Pegawai</small>
-                <li class="{{ $navlink == 'pegawai' ? 'active' : '' }}"><a href="{{ route('pegawai') }}"><i class="fa-solid fa-user-group"></i>Pegawai</a>
+                <li class="{{ $navlink == 'pegawai' ? 'active' : '' }}"><a href="{{ route('pegawai') }}"><i class="fa-solid fa-user-group"></i>Data Pegawai</a>
                 </li>
+                @role('admin')
+                <li class="{{ $navlink == 'admin.create' ? 'active' : '' }}"><a href="{{ route('admin.create') }}"><i class="fa-solid fa-user-group"></i>Tambah Pegawai</a>
+                </li>
+                @endrole
                 <li>
                     <a href="{{ route('absen.kehadiran') }}"><i class="fa-solid fa-flag"></i>Absensi</a>
                 </li>
