@@ -86,6 +86,10 @@
         display: block;
     }
 
+    .profile-usermenu ul li.active a {
+        color: #5b9bd1;
+    }
+
     .profile-usermenu ul li.active {
         border-bottom: none;
         font-weight: 400;
