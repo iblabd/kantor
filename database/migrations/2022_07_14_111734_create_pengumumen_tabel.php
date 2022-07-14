@@ -13,7 +13,7 @@ class CreatePengumumenTabel extends Migration
      */
     public function up()
     {
-        Schema::create('pengumumen_tabel', function (Blueprint $table) {
+        Schema::create('pengumumen', function (Blueprint $table) {
             $table->id();
             $table->String("judul");
             $table->String("isi");

@@ -44,9 +44,7 @@ class PengumumanController extends Controller
         // dd($request);
         $request->validate([
             'judul' => 'required',
-            'isi' => 'required',
-            'waktu' => 'required',
-
+            'isi' => 'required'
         ]);
 
         Pengumuman::create($request->all());

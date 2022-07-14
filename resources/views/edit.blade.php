@@ -37,10 +37,6 @@
                 <label for="isi" class="form-label">isi</label>
                 <input type="text" class="form-control" id="isi" value="{{$pengumuman->isi}}">
               </div>
-              <div class="mb-3">
-                <label for="tanggal" class="form-label">tanggal</label>
-                <input type="date" class="form-control" id="tanggal" value="{{$pengumuman->waktu}}">
-              </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
       </div>
