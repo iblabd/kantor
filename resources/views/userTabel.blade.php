@@ -14,8 +14,17 @@
             <h5 id="helpId">PT BABU PELAJAR</h5>
         </div>
 
+        <div class="row align-items-start">
+            <class class="col-4">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-primary" type="submit">Search</button>
+                </form>
+            </class>
+        </div>
+
         @if ($karyawans->count() >= 1)
-            <div class="col-lg-12 mt-4">
+            <div class="col-lg-12" style="height: 60vh">
                 <table class="table table-responsive border d-block table-bordered table-hover">
                     <thead class="table-secondary text-center">
                         <tr>
@@ -75,6 +84,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{ $karyawans->links() }}
             </div>
         @else
             <div class="alert alert-warning">Tidak ada data karyawan</div>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Present;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Exports\PresentExport;
+use App\Exports\UsersPresentExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PresentController extends Controller

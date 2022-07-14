@@ -3,7 +3,7 @@
 @section('content')
     <a href="/" class="btn btn-default">Go Back</a>
 <h1><a href="/todo/{{$todo->id}}">{{$todo->text}}</a></h1>
-<div class="label label-info" style="float:right; font-size:15px;"><a>Tenggat </a>{{$todo->due}}</div> 
+<div class="label label-info" style="float:right; font-size:15px;"><a>Tenggat </a>{{$todo->due}}</div>
 <br>
 <div class="label label-danger" style="font-size:12px;">{{$todo->join_project}}</div>
 <hr>

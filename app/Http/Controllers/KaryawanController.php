@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class KaryawanController extends Controller
 {
@@ -20,7 +21,7 @@ class KaryawanController extends Controller
     {
         //
         return view('userTabel', [
-            'karyawans' => karyawan::all()
+            'karyawans' => DB::table('karyawans')->paginate(6)
         ]);
     }
 
