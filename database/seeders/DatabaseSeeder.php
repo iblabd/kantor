@@ -2,6 +2,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Karyawan;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,8 +15,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
-
-        Karyawan::factory(20)->create();
-
+        $this->call(KaryawansSeeder::class);
     }
 }

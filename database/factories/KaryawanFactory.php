@@ -5,8 +5,9 @@ namespace Database\Factories;
 use App\Models\Karyawan;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class KaryawansFactory extends Factory
+class KaryawanFactory extends Factory
 {
+    protected $model = Karyawan::class;
     /**
      * Define the model's default state.
      *
@@ -15,12 +16,14 @@ class KaryawansFactory extends Factory
     public function definition()
     {
         return [
-            'nama' => fake()->name($gender = null|'male'),
+            'user_id' => $this->faker->numberBetween(1, 20),
+            'nama' => $this->faker->name($gender = 'female'|'male'),
             'tanggalLahir' => '2000-01-01',
             'jenisKelamin' => 'Laki-laki',
-            'RiwayatPendidikan' => 'Lainnya..',
-            'Jabatan' => fake()->jobTitle(),
-            'email' => fake()->unique()->safeEmail(),
+            'telephone' => $this->faker->phoneNumber(),
+            'RiwayatPendidikan' => 'Sarjana',
+            'Jabatan' => $this->faker->jobTitle(),
+            'email' => $this->faker->unique()->safeEmail(),
             'kota' => 'Bandung',
             'Provinsi' => 'Jawa Barat',
         ];
