@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Karyawan;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\User;
 
 class KaryawanFactory extends Factory
 {
@@ -16,7 +17,7 @@ class KaryawanFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => $this->faker->numberBetween(1, 20),
+            'user_id' => '0',
             'nama' => $this->faker->name($gender = 'female'|'male'),
             'tanggalLahir' => '2000-01-01',
             'jenisKelamin' => 'Laki-laki',

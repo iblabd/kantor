@@ -98,6 +98,7 @@ class KaryawanController extends Controller
             'pos'=>$request['pos'],
             'rt'=>$request['rt'],
             'rw'=>$request['rw'],
+            'provinsi'=>$request['provinsi'],
             'file_path'=>$fileName
         ]);
 

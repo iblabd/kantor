@@ -41,7 +41,7 @@
                     <tbody class="table-light">
                         @foreach ($karyawans as $karyawan)
                             <tr valign="middle" data-bs-toggle="modal" data-bs-target="#customModal-{{ $karyawan->id }}">
-                                <td class="text-nowrap text-center">{{ $karyawan->id }}</td>
+                                <td class="text-nowrap text-center">{{ $karyawan->user_id }}</td>
                                 <td style="min-width: 240px;" class="text-nowrap">{{ $karyawan->nama }}</td>
                                 <td class="text-nowrap text-center">{{ $karyawan->jenisKelamin }}</td>
                                 <td class="text-nowrap text-center">{{ $karyawan->jabatan }}</td>
