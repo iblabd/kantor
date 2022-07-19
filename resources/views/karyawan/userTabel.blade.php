@@ -40,7 +40,7 @@
                     </thead>
                     <tbody class="table-light">
                         @foreach ($karyawans as $karyawan)
-                            <tr valign="middle" data-bs-toggle="modal" data-bs-target="#customModal-{{ $karyawan->id }}">
+                            <tr valign="middle" data-bs-toggle="modal" data-bs-target="#customModal-{{ $karyawan->user_id }}">
                                 <td class="text-nowrap text-center">{{ $karyawan->user_id }}</td>
                                 <td style="min-width: 240px;" class="text-nowrap">{{ $karyawan->nama }}</td>
                                 <td class="text-nowrap text-center">{{ $karyawan->jenisKelamin }}</td>
@@ -54,7 +54,7 @@
                             </tr>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="customModal-{{ $karyawan->id }}" tabindex="-1"
+                            <div class="modal fade" id="customModal-{{ $karyawan->user_id }}" tabindex="-1"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -75,7 +75,7 @@
                                             </small>
                                         </div>
                                         <div class="modal-footer">
-                                            <a href="{{ route('detailPegawai', [$karyawan->id]) }}"
+                                            <a href="{{ route('detailPegawai', [$karyawan->user_id]) }}"
                                                 class="btn btn-primary">More Information</a>
                                         </div>
                                     </div>

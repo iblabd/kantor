@@ -1,7 +1,6 @@
-<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js" async></script>
 <script>
-    $().ready(function() {
+    $(function() {
         $(".needs-validation").validate({
             errorPlacement: function(error, element) {
                 var placement = $(element).data('error');

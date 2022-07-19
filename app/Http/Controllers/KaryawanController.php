@@ -17,12 +17,22 @@ class KaryawanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        return view('userTabel', [
-            'karyawans' => DB::table('karyawans')->paginate(6)
+        $karyawan = Karyawan::when($request->has("search"),function($q)use($request){
+            return $q->where('nama', 'like', '%'. $request->get('search') . '%');
+        })->paginate(12);
+
+        return view('karyawan.userTabel',[
+            'karyawans' => $karyawan
         ]);
+
+        // $karyawan = Karyawan::latest()->paginate(12);
+        // if(request('search'))
+        // {
+        //     $karyawan -> where('nama', 'like', '%'. request('search'). '%');
+        // }
     }
 
     /**
@@ -38,7 +48,7 @@ class KaryawanController extends Controller
         // }else{
         //     return redirect()->route('dashboard')->with();
         // }
-        return view('admin.newUserCreate');
+        return view('karyawan.newUserCreate');
     }
 
     /**
@@ -140,7 +150,7 @@ class KaryawanController extends Controller
     {
         //
         // dd($karyawan);
-        return view('userInfo', [
+        return view('karyawan.userInfo', [
             'karyawan' => $karyawan
         ]);
     }
