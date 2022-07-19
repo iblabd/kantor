@@ -57,6 +57,12 @@ Route::group(['middleware' => ['web', 'auth']], function(){
 
         // pegawai route
         Route::get('/dashboard/pegawai', [KaryawanController::class, 'index'])->middleware(['auth'])->name('pegawai');
+        Route::get('/dashboard/pegawai/{karyawan:id}/status', [KaryawanController::class, 'show'])->middleware(['auth'])->name('detailPegawai');
+        // todo route
+        Route::resource('todo', 'TodosController');
+        Route::get('/todo', [TodosController::class, 'index'])->name('todo');
+        Route::get('/todo/create', [TodosController::class, 'create']);
+        Route::post('/todo/create', [TodosController::class, 'store']);
         Route::get('/dashboard/pegawai/{karyawan:user_id}/status', [KaryawanController::class, 'show'])->middleware(['auth'])->name('detailPegawai');
         Route::get('/dashboard/userProfile/{karyawan:user_id}/status', [KaryawanController::class, 'userProfile'])->middleware(['auth'])->name('userProfile');
 
@@ -71,8 +77,8 @@ Route::group(['middleware' => ['web', 'auth']], function(){
         Route::get('/pengumuman',[PengumumanController::class, 'index'])->name('pengumuman');
         Route::get('/pengumuman/create',[PengumumanController::class,'create']);
         Route::post('/pengumuman/create/execute',[PengumumanController::class,'store'])->name('addNewItem');
-        Route::get('/pengumuman/{id}',[PengumumanController::class,'show']);
-        Route::get('/pengumuman/{id}/edit',[PengumumanController::class,'edit']);
+        Route::get('/peengumuman/{id}',[PengumumanController::class,'show']);
+        Route::get('/pengumuman/{pengumuman:id}/edit',[PengumumanController::class,'edit'])->name('edit');
         Route::put('/pengumuman/{id}',[PengumumanController::class,'update']);
         Route::get('/pengumuman/{pengumuman:id}/delete',[PengumumanController::class,'destroy'])->name('delete');
     });

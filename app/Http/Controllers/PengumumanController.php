@@ -44,7 +44,9 @@ class PengumumanController extends Controller
         // dd($request);
         $request->validate([
             'judul' => 'required',
-            'isi' => 'required'
+            'isi' => 'required',
+            'waktu' => 'required',
+
         ]);
 
         Pengumuman::create($request->all());
@@ -72,8 +74,8 @@ class PengumumanController extends Controller
      */
     public function edit($id)
     {
-        Pengumuman::find()->$id;
-        return view('edit',["pengumuman"=>$pengumuman]);
+        $pengumuman = Pengumuman::find($id);
+        return view('edit')->with('pengumuman', $pengumuman);
     }
 
     /**
