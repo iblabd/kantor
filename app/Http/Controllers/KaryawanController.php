@@ -156,6 +156,21 @@ class KaryawanController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Karyawan  $karyawan
+     * @return \Illuminate\Http\Response
+     */
+    public function showProfile(Karyawan $karyawan)
+    {
+        //
+        // dd($karyawan);
+        return view('userInfo', [
+            'karyawan' => $karyawan
+        ]);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Karyawan  $karyawan

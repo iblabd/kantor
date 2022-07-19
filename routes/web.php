@@ -58,6 +58,7 @@ Route::group(['middleware' => ['web', 'auth']], function(){
         // pegawai route
         Route::get('/dashboard/pegawai', [KaryawanController::class, 'index'])->middleware(['auth'])->name('pegawai');
         Route::get('/dashboard/pegawai/{karyawan:user_id}/status', [KaryawanController::class, 'show'])->middleware(['auth'])->name('detailPegawai');
+        Route::get('/dashboard/userProfile/{karyawan:user_id}/status', [KaryawanController::class, 'userProfile'])->middleware(['auth'])->name('userProfile');
 
         // todo route
         Route::get('/test/todo/create', [TodoController::class, 'create'])->name('todo.create');
