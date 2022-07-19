@@ -102,7 +102,7 @@
 						  				class="btn btn-sm btn-outline-info float-right"
 						  			>Edit</a>
 									  <button type="button" class="btn btn-sm btn-outline-info float-right" data-toggle="modal" data-target="#exampleModalLong" href="id">
-										Launch demo modal
+										TODO
 										</button>
 					  		</div>
 				  		</div>
