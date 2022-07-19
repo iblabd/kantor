@@ -1,7 +1,6 @@
-import './bootstrap';
+require('./bootstrap');
+import App from './common.js';
 
-import Alpine from 'alpinejs';
+window.App = App;
 
-window.Alpine = Alpine;
-
-Alpine.start();
+App.init();
