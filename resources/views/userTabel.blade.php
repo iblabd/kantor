@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <div class="bg-white border rounded px-4 pt-4">
+    <div class="bg-white border rounded px-4 pt-4 pb-4">
         <nav class="mt-4" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
@@ -16,19 +16,18 @@
 
         <div class="row align-items-start">
             <class class="col-4">
-                <form class="d-flex" role="search">
-                    <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex" role="search" action="pegawai">
+                    <input class="form-control me-1" type="search" placeholder="Search" aria-label="Search" value="{{ request('search') }}" name="search">
                     <button class="btn btn-outline-primary" type="submit">Search</button>
                 </form>
             </class>
         </div>
 
         @if ($karyawans->count() >= 1)
-            <div class="col-lg-12" style="height: 60vh">
-                <table class="table table-responsive border d-block table-bordered table-hover">
+            <div class="mb-2" style="height: 60vh">
+                <table class="table table-responsive border d-block table-bordered table-hover col-lg-12">
                     <thead class="table-secondary text-center">
                         <tr>
-                            <th>ID</th>
                             <th>Nama</th>
                             <th>Kelamin</th>
                             <th>Status</th>
@@ -41,8 +40,7 @@
                     <tbody class="table-light">
                         @foreach ($karyawans as $karyawan)
                             <tr valign="middle" data-bs-toggle="modal" data-bs-target="#customModal-{{ $karyawan->user_id }}">
-                                <td class="text-nowrap text-center">{{ $karyawan->user_id }}</td>
-                                <td style="min-width: 240px;" class="text-nowrap">{{ $karyawan->nama }}</td>
+                                <td style="min-width: 240px;" class="text-nowrap text-center">{{ $karyawan->nama }}</td>
                                 <td class="text-nowrap text-center">{{ $karyawan->jenisKelamin }}</td>
                                 <td class="text-nowrap text-center">{{ $karyawan->jabatan }}</td>
                                 <td class="text-nowrap">(+62) {{ $karyawan->telephone }}</td>
@@ -84,7 +82,9 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{ $karyawans->links() }}
+                {!! $karyawans->links() !!}
+
+
             </div>
         @else
             <div class="alert alert-warning">Tidak ada data karyawan</div>

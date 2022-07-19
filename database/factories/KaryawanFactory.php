@@ -17,7 +17,7 @@ class KaryawanFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => '0',
+            'user_id' => $this->faker->numberBetween(0, 100),
             'nama' => $this->faker->name($gender = 'female'|'male'),
             'tanggalLahir' => '2000-01-01',
             'jenisKelamin' => 'Laki-laki',
