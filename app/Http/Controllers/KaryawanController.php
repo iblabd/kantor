@@ -17,12 +17,22 @@ class KaryawanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        return view('userTabel', [
-            'karyawans' => DB::table('karyawans')->paginate(6)
+        $karyawan = Karyawan::when($request->has("search"),function($q)use($request){
+            return $q->where('nama', 'like', '%'. $request->get('search') . '%');
+        })->paginate(12);
+
+        return view('userTabel',[
+            'karyawans' => $karyawan
         ]);
+
+        // $karyawan = Karyawan::latest()->paginate(12);
+        // if(request('search'))
+        // {
+        //     $karyawan -> where('nama', 'like', '%'. request('search'). '%');
+        // }
     }
 
     /**
