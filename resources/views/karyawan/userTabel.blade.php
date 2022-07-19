@@ -24,7 +24,7 @@
         </div>
 
         @if ($karyawans->count() >= 1)
-            <div class="col-lg-12" style="height: 60vh">
+            <div class="col-lg-12">
                 <table class="table table-responsive border d-block table-bordered table-hover">
                     <thead class="table-secondary text-center">
                         <tr>
