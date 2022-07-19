@@ -65,6 +65,6 @@
             </div>
     </body>
 
-    @include('layouts.showpassword')
-    @include('layouts.validation')
+    @include('partials.showpassword')
+    @include('partials.validation')
 @endsection
