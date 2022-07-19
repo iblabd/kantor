@@ -24,7 +24,7 @@
                 </li>
                 <small class="profile-usertitle-name">Pegawai</small>
                 <li>
-                    <a href="{{ route('userProfile', [auth()->user()->id]) }}"><i class="fa-solid fa-address-card"></i>Profile</a>
+                    <a href="{{ route('userProfile', [auth()->user()->karyawan->user_id]) }}"><i class="fa-solid fa-address-card"></i>Profile</a>
                 </li>
                 <li class="{{ $navlink == 'pegawai' ? 'active' : '' }}"><a href="{{ route('pegawai') }}"><i
                             class="fa-solid fa-user-group"></i>Data Pegawai</a>
