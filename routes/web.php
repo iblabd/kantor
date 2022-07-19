@@ -35,7 +35,6 @@ Route::group(['middleware' => ['web', 'auth']], function(){
         Route::post('/admin/createKaryawan/execute', [KaryawanController::class, 'store'])->name('admin.create.execute');
 
         // absen route
-        Route::get('/dashboard/absen', [PresentController::class, 'indexForAbsen'])->name('absen.kehadiran');
         Route::get('/dashboard/absen/rekap-absen', [PresentController::class, 'index'])->name('kehadiran.index');
         Route::get('/dashboard/absen/cari', [PresentController::class, 'search'])->name('kehadiran.search');
         Route::get('/dashboard/absen/{user}/cari', 'PresentsController@cari')->name('kehadiran.cari');
@@ -52,20 +51,20 @@ Route::group(['middleware' => ['web', 'auth']], function(){
         })->name('dashboard');
 
         // absen checkin/out route
+        Route::get('/dashboard/absen', [PresentController::class, 'indexForAbsen'])->name('absen.kehadiran');
         Route::patch('/dashboard/absen/{kehadiran}', [PresentController::class, 'checkOut'])->name('kehadiran.check-out');
         Route::post('/dashboard/absen', [PresentController::class, 'checkIn'])->name('kehadiran.check-in');
-
 
         // pegawai route
         Route::get('/dashboard/pegawai', [KaryawanController::class, 'index'])->middleware(['auth'])->name('pegawai');
         Route::get('/dashboard/pegawai/{karyawan:user_id}/status', [KaryawanController::class, 'show'])->middleware(['auth'])->name('detailPegawai');
+
         // todo route
         Route::get('/test/todo/create', [TodoController::class, 'create'])->name('todo.create');
         Route::post('/test/todo/destory/bulk',[TodoController::class,'bulkDestroy'])->name('todo.destroy.bulk');
         Route::post('/test/todo/edit/bulk',[TodoController::class,'bulkEdit'])->name('todo.edit.bulk');
         Route::put('/test/todo/edit/bulk',[TodoController::class,'bulkUpdate'])->name('todo.edit.bulk.submit');
         Route::resource('/test/todo',TodoController::class);
-
 
         // pengumuman route
         Route::get('/pengumuman',[PengumumanController::class, 'index'])->name('pengumuman');
