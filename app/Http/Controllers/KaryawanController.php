@@ -24,7 +24,7 @@ class KaryawanController extends Controller
             return $q->where('nama', 'like', '%'. $request->get('search') . '%');
         })->paginate(12);
 
-        return view('userTabel',[
+        return view('karyawan.userTabel',[
             'karyawans' => $karyawan
         ]);
 
@@ -48,7 +48,7 @@ class KaryawanController extends Controller
         // }else{
         //     return redirect()->route('dashboard')->with();
         // }
-        return view('admin.newUserCreate');
+        return view('karyawan.newUserCreate');
     }
 
     /**
@@ -150,7 +150,7 @@ class KaryawanController extends Controller
     {
         //
         // dd($karyawan);
-        return view('userInfo', [
+        return view('karyawan.userInfo', [
             'karyawan' => $karyawan
         ]);
     }
