@@ -44,25 +44,45 @@
         </button>
       </div>
       <div class="modal-body">
-	  @foreach ($todo->items as $item)
-		    					<div class="input-group mb-1 item">
-		    						<div class="input-group-prepend">
-									    <div class="input-group-text">
-									      <input type="checkbox" aria-label="">
-									    </div>
-									</div>
-								 	<input type="text" name="items[]" class="form-control form-control-sm" value="{{ $item->title }}">
-								<div class="input-group-append">
-								    <button class="btn btn-outline-secondary btn-sm deleteItem--btn" type="button" >Delete</button>
-								  	</div>
-								</div>
-	  @endforeach
-	  <input type="text" name="items[]" class="form-control form-control-sm" placeholder="New Item" >
-	  					<div class="col-12">
-		    				<button class="btn btn-outline-success btn-sm addItem--btn"  type="button">Add Item</button>
-		    				<button class="btn btn-outline-danger btn-sm removeSelected--btn"  type="button" style="display: none;">Remove Selected</button>
-		    			</div>
-      </div>
+        <div class="col-12 form-group ">
+            Todo Items
+        </div>
+        <div class="col-12 itemsContainer">
+
+            @foreach ($todo->items as $item)
+                <div class="input-group mb-1 item">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <input type="checkbox" aria-label="">
+                        </div>
+                    </div>
+                     <input type="text" name="items[]" class="form-control form-control-sm" value="{{ $item->title }}">
+                     <div class="input-group-append">
+                        <button class="btn btn-outline-secondary btn-sm deleteItem--btn" type="button" >Delete</button>
+                      </div>
+                </div>
+            @endforeach
+
+            <div class="input-group mb-1 item">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <input type="checkbox" aria-label="">
+                    </div>
+                </div>
+                 <input type="text" name="items[]" class="form-control form-control-sm" placeholder="New Item" >
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary btn-sm deleteItem--btn" type="button" >Delete</button>
+                  </div>
+            </div>
+
+        </div>
+
+        <div class="col-12">
+            <button class="btn btn-outline-success btn-sm addItem--btn"  type="button">Add Item</button>
+            <button class="btn btn-outline-danger btn-sm removeSelected--btn"  type="button" style="display: none;">Remove Selected</button>
+        </div>
+
+    </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
