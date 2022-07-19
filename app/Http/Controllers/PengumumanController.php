@@ -41,7 +41,6 @@ class PengumumanController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
         $request->validate([
             'judul' => 'required',
             'isi' => 'required',
@@ -72,9 +71,9 @@ class PengumumanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pengumuman $pengumuman)
+    public function edit($id)
     {
-        $pengumuman = Pengumuman::find($pengumuman);
+        $pengumuman = Pengumuman::find($id);
         return view('edit')->with('pengumuman', $pengumuman);
     }
 
