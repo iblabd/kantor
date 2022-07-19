@@ -72,9 +72,9 @@ class PengumumanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Pengumuman $pengumuman)
     {
-        $pengumuman = Pengumuman::find($id);
+        $pengumuman = Pengumuman::find($pengumuman);
         return view('edit')->with('pengumuman', $pengumuman);
     }
 
