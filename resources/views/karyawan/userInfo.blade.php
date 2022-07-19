@@ -13,8 +13,8 @@
   <body>
   <nav class="navbar navbar-expand navbar-light bg-light">
         <div class="container mt-2 mb-2">
-            <h4>Naufal Nur Hafizh <span class="badge bg-warning ms-2">Lembur</span></h4>
-            <a name="" id="" class="btn btn-danger ps-5 pe-5" href="#" role="button">< Back</a>
+            <h4>{{ $karyawan -> nama }} <span class="badge bg-warning ms-2">{{ present->keterangan }}</span></h4>
+            <a name="" id="" class="btn btn-danger ps-5 pe-5" href="{{ url('dashboard') }}" role="button">< Back</a>
         </div>
     </nav>
 
@@ -41,7 +41,7 @@
                                     class="rounded-circle" width="150">
                                 <div class="mt-3">
                                     <h4>{{ $karyawan -> nama }}</h4>
-                                    <p class="text-secondary mb-1">{{ $karyawan -> jabatan }} - <b>Programer (PKL)</b></p>
+                                    <p class="text-secondary mb-1">{{ $karyawan -> jabatan }} - <b>None</b></p>
                                 </div>
                             </div>
                         </div>

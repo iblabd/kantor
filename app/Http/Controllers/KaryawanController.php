@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Karyawan;
 use App\Models\User;
+use App\Models\Present;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Hash;
@@ -161,12 +162,14 @@ class KaryawanController extends Controller
      * @param  \App\Models\Karyawan  $karyawan
      * @return \Illuminate\Http\Response
      */
-    public function showProfile(Karyawan $karyawan)
+    public function userProfile(Karyawan $karyawan)
     {
         //
         // dd($karyawan);
-        return view('userInfo', [
-            'karyawan' => $karyawan
+        // dd(Present::where('user_id', $karyawan->user_id));
+        return view('karyawan.userInfo', [
+            'karyawan' => $karyawan,
+            // 'status'=> Present::findOrFail($karyawan->user_id)->keterangan,
         ]);
     }
 
