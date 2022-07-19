@@ -31,11 +31,11 @@
             @csrf
             <div class="mb-3">
               <label for="judul" class="form-label">Judul</label>
-              <input type="text" class="form-control" id="judul" value="{{$pengumuman->judul}}">
+              <input type="text" class="form-control" id="judul" value="{{$pengumuman->id}}">
             </div>
             <div class="mb-3">
                 <label for="isi" class="form-label">isi</label>
-                <input type="text" class="form-control" id="isi" value="{{$pengumuman->isi}}">
+                <input type="text" class="form-control" id="isi" value="{{$pengumuman->id}}">
               </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
