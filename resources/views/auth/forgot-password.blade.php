@@ -30,6 +30,6 @@
             </div>
         </body>
 
-@include('layouts.validation')
+@include('partials.validation')
 
 @endsection

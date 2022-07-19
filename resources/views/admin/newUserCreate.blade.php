@@ -300,5 +300,5 @@
             trigger: 'focus'
         })
     </script>
-    @include('layouts.validation')
+    @include('partials.validation')
 @endsection

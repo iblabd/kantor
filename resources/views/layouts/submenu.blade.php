@@ -1,3 +1,0 @@
-<script>
-    $('.collapse').collapse()
-</script>
