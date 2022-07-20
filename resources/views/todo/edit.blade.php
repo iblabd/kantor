@@ -35,6 +35,8 @@
 		    				<input type="number" min="1" class="form-control form-control-sm"  value="{{ $todo->priority }}" name="priority"  />
 		    			</div>
 
+
+
 		    		<div class="appForm--response my-2"></div>
 		    		<button class="btn btn-dark btn-sm float-right ">Update</button>
 		    	</form>
