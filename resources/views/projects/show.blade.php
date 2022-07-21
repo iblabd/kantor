@@ -7,12 +7,19 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                 <li class="breadcrumb-item" aria-current="page">Projek</li>
-                <li class="breadcrumb-item active" aria-current="page">Nama Proyek</li>
+                <li class="breadcrumb-item active" aria-current="page">{{ $project->title }}</li>
             </ol>
         </nav>
         <div class="my-4">
-            <h2>Nama Proyek <span class="badge bg-primary align-middle" style="font-size: 0.48em">Berjalan</span> <a
-                    type="button" class="btn btn-white"><i class="fa fa-pencil" aria-hidden="true"></i></a></h2>
+            <h2>{{ $project->title }} <span class="badge bg-primary align-middle" style="font-size: 0.48em">{{ $project->status }}</span>
+                @role('admin')
+                <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-white"><i class="fa fa-pencil" aria-hidden="true"></i></a></h2>
+                <form action="{{ route('projects.destroy', $project->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                <button type="submit" class="btn btn-white"><i class="fa fa-trash" aria-hidden="true"></i></button></h2>
+                </form>
+                @endrole
             <div class="row">
                 <div class="col">
                     <p>Anggota: </p>
@@ -25,7 +32,7 @@
                         Tambah</button>
                 </div>
             </div>
-            <p class="mt-3">Ini adalah contoh deskripsi dari sebuah proyek.</p>
+            <p class="mt-3">{{ $project->description }}</p>
         </div>
         <div class="container row mb-2">
             <div class="d-flex justify-content-between">

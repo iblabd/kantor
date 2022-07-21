@@ -14,27 +14,31 @@
             <h2>List Proyek</h2>
         </div>
 
+        <form action="{{ route('projects.store') }}" method="POST">
+            @csrf
+            @method('POST')
         <div class="mb-3">
           <label for="" class="form-label">Nama Proyek</label>
-          <input type="text" name="" id="" class="form-control" placeholder="" aria-describedby="helpId">
+          <input type="text" name="title" id="" class="form-control" placeholder="" aria-describedby="helpId">
         </div>
 
         <div class="mb-3">
           <label for="" class="form-label">Deskripsi</label>
-          <textarea class="form-control" name="" id="" rows="3"></textarea>
+          <textarea class="form-control" name="description" id="" rows="3"></textarea>
         </div>
 
         <div class="mb-3">
           <label for="" class="form-label">Status</label>
-          <select class="form-control" name="" id="">
+          <select class="form-control" name="status" id="">
             <option>Berjalan</option>
             <option>Selesai</option>
           </select>
         </div>
 
         <div class="mt-4 d-flex justify-content-end">
-          <button type="button" name="" id="" class="btn btn-primary">Buat Proyek</button>
+          <button type="submit" class="btn btn-primary">Buat Proyek</button>
         </div>
+        </form>
 
     </div>
 @endsection

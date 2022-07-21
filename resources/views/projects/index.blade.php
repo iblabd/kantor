@@ -11,45 +11,28 @@
         </nav>
         <div class="my-4">
             <h2>List Projek</h2>
-            <a class="link-primary"><i class="fa fa-plus" aria-hidden="true"></i> Buat projek baru</a>
+            @role('admin')
+            <a class="link-primary" href="{{ route('projects.create')}}"><i class="fa fa-plus" aria-hidden="true"></i> Buat projek baru</a>
+            @endrole
         </div>
 
 
         <div class="row">
+            @foreach ($projects as $project)
             <div class="col-sm-6 my-2">
-                <div class="card">
+                <div class="card" onclick="location.href = '{{ route('projects.show', [$project->id]) }}';">
                     <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <h5 class="card-title">{{ $project->title }}</h5>
+                        <p class="card-text">{{ $project->description }}</p>
                         <div class="d-flex justify-content-end">
-                            <span class="badge bg-primary">Berjalan</span>
+                            <span class="badge bg-primary">{{ $project->status }}</span>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 my-2">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <div class="d-flex justify-content-end">
-                            <span class="badge bg-primary">Berjalan</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 my-2">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <div class="d-flex justify-content-end">
-                            <span class="badge bg-primary">Berjalan</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
+
 
     </div>
 @endsection

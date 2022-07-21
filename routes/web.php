@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TodoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PresentController;
@@ -43,12 +44,21 @@ Route::group(['middleware' => ['web', 'auth']], function(){
         Route::post('/dashboard/absen/ubah', 'PresentsController@ubah')->name('ajax.get.kehadiran');
         Route::patch('/dashboard/absen/{kehadiran}', 'PresentsController@update')->name('kehadiran.update');
         Route::post('/dashboard/absen', 'PresentsController@store')->name('kehadiran.store');
+        Route::get('projects/create', [ProjectController::class, 'create'])->name('projects.create');
+        Route::post('/projects/create', [ProjectController::class, 'store'])->name('projects.store');
+        Route::get('/projects/{project}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
+        Route::put('/projects/{project}', [ProjectController::class, 'update'])->name('projects.update');
+        Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');
     });
     Route::group(['middleware' => ['role:admin|user']], function(){
 
         Route::get('/dashboard', function(){
             return view('dashboard');
         })->name('dashboard');
+
+        //projects
+        Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index')->name('projects.index');
+        Route::get('/projects/{project}', [ProjectController::class, 'show'])->name('projects.show');
 
         // absen checkin/out route
         Route::get('/dashboard/absen', [PresentController::class, 'indexForAbsen'])->name('absen.kehadiran');

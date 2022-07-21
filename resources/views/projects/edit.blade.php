@@ -7,36 +7,39 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                 <li class="breadcrumb-item" aria-current="page">Projek</li>
-                <li class="breadcrumb-item active" aria-current="page">/li>
-                <li class="breadcrumb-item active" aria-current="page">Edit</li>
+                <li class="breadcrumb-item active" aria-current="page">Buat Projek</li>
             </ol>
         </nav>
         <div class="my-4">
             <h2>List Proyek</h2>
         </div>
 
+        <form action="{{ route('projects.update', $project->id) }}" method="POST">
+            @csrf
+            @method('PUT')
         <div class="mb-3">
           <label for="" class="form-label">Nama Proyek</label>
-          <input type="text" name="" id="" class="form-control" placeholder="" aria-describedby="helpId">
+          <input type="text" name="title" id="" class="form-control" placeholder="" value="{{ $project->title }}" aria-describedby="helpId">
         </div>
 
         <div class="mb-3">
           <label for="" class="form-label">Deskripsi</label>
-          <textarea class="form-control" name="" id="" rows="3"></textarea>
+          <textarea class="form-control" name="description" id="" rows="3">{{ $project->description }}</textarea>
         </div>
 
         <div class="mb-3">
           <label for="" class="form-label">Status</label>
-          <select class="form-control" name="" id="">
-            <option>Berjalan</option>
-            <option>Selesai</option>
-            <option>Dibatalkan</option>
+          <select class="form-control" name="status" id="">
+            <option {{ 'berjalan' == $project->status ? 'selected="selected"' : '' }}>Berjalan</option>
+            <option {{ 'selesai' == $project->status ? 'selected="selected"' : '' }}>Selesai</option>
+            <option {{ 'dibatalkan' == $project->status ? 'selected="selected"' : '' }}>Dibatalkan</option>
           </select>
         </div>
 
         <div class="mt-4 d-flex justify-content-end">
-          <button type="button" name="" id="" class="btn btn-primary">Buat Proyek</button>
+          <button type="submit" class="btn btn-primary">Simpan</button>
         </div>
+        </form>
 
     </div>
 @endsection
