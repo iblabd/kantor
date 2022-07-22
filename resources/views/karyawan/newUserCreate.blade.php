@@ -6,8 +6,8 @@
     <div class="bg-white border rounded px-4 pt-4">
         <nav class="mt-4" aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Pegawai</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('pegawai') }}">Pegawai</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Tambah Pegawai</li>
             </ol>
         </nav>

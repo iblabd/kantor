@@ -13,7 +13,7 @@
   <body>
   <nav class="navbar navbar-expand navbar-light bg-light">
         <div class="container mt-2 mb-2">
-            <h4>{{ $karyawan -> nama }} <span class="badge bg-warning ms-2">{{ present->keterangan }}</span></h4>
+            <h4>{{ $karyawan -> nama }} <span class="badge bg-{{$warna}} ms-2">{{ $present->keterangan }}</span></h4>
             <a name="" id="" class="btn btn-danger ps-5 pe-5" href="{{ url('dashboard') }}" role="button">< Back</a>
         </div>
     </nav>
@@ -22,8 +22,8 @@
     <div class="container">
         <nav class="mt-4" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item"><a href="#">Pegawai</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('pegawai') }}">Pegawai</a></li>
               <li class="breadcrumb-item active" aria-current="page">Status</li>
             </ol>
         </nav>

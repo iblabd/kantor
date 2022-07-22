@@ -23,17 +23,14 @@
                     <a href="{{ route('absen.kehadiran') }}"><i class="fa-solid fa-flag"></i>Absensi</a>
                 </li>
                 <small class="profile-usertitle-name">Pegawai</small>
+                @if (auth()->user()->karyawan)
                 <li>
                     <a href="{{ route('userProfile', [auth()->user()->karyawan->user_id]) }}"><i class="fa-solid fa-address-card"></i>Profile</a>
                 </li>
-                <li class="{{ $navlink == 'pegawai' ? 'active' : '' }}"><a href="{{ route('pegawai') }}"><i
+                @endif
+                <li class="{{ $navlink == 'admin.create' || 'pegawai'  ? 'active' : '' }}"><a href="{{ route('pegawai') }}"><i
                             class="fa-solid fa-user-group"></i>Data Pegawai</a>
                 </li>
-                @role('admin')
-                    <li class="{{ $navlink == 'admin.create' ? 'active' : '' }}"><a
-                            href="{{ route('admin.create') }}"><i class="fa-solid fa-user-group"></i>Tambah Pegawai</a>
-                    </li>
-                @endrole
                 <li>
                     <a href="#"
                         onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i
