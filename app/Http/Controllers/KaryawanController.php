@@ -26,7 +26,7 @@ class KaryawanController extends Controller
         })->paginate(12);
 
         return view('karyawan.userTabel',[
-            'karyawans' => $karyawan
+            'karyawans' => $karyawan,
         ]);
 
         // $karyawan = Karyawan::latest()->paginate(12);
@@ -150,9 +150,34 @@ class KaryawanController extends Controller
     public function show(Karyawan $karyawan)
     {
         //
+        // return view('karyawan.userInfo', [
+        //     'karyawan' => $karyawan
+        // ]);
+        //
         // dd($karyawan);
+        // dd(Present::whereRelation('user', 'user_id', $karyawan->user_id)->get());
+        // dd(Present::whereUserId($karyawan->user_id)->whereTanggal(date('Y-m-d'))->first());
+        $warna;
+        $present = Present::whereUserId($karyawan->user_id)->whereTanggal(date('Y-m-d'))->first();
+        if(is_null($present)){
+            $present->keterangan = ['None'];
+            $warna = 'secondary';
+        }else{
+            if($present->keterangan == 'Telat'){
+                $warna = 'warning';
+            }else if($present->keterangan == 'Alpha'){
+                $warna = 'danger';
+            }else if($present->keterangan == 'Cuti'){
+                $warna = 'info';
+            }else{
+                $warna = 'success';
+            }
+        }
+        // dd($warna);
         return view('karyawan.userInfo', [
-            'karyawan' => $karyawan
+            'karyawan' => $karyawan,
+            'present' => $present,
+            'warna' => $warna,
         ]);
     }
 
@@ -166,10 +191,34 @@ class KaryawanController extends Controller
     {
         //
         // dd($karyawan);
-        // dd(Present::where('user_id', $karyawan->user_id));
+        // dd(Present::whereRelation('user', 'user_id', $karyawan->user_id)->get());
+        // dd(Present::whereUserId($karyawan->user_id)->whereTanggal(date('Y-m-d'))->first());
+
+        $warna;
+        $present = Present::whereUserId($karyawan->user_id)->whereTanggal(date('Y-m-d'))->first();
+        // if(!$present->keterangan){
+        //     return
+        // }
+
+        if($present->keterangan == 'Telat'){
+            $warna = 'warning';
+        }else if($present->keterangan == 'Alpha'){
+            $warna = 'danger';
+        }else if($present->keterangan == 'Cuti'){
+            $warna = 'info';
+        }else{
+            $warna = 'success';
+        }
+
+        if(!$present->keterangan){
+            $present = null;
+            $warna = null;
+        }
+        // dd($warna);
         return view('karyawan.userInfo', [
             'karyawan' => $karyawan,
-            // 'status'=> Present::findOrFail($karyawan->user_id)->keterangan,
+            'present' => $present,
+            'warna' => $warna,
         ]);
     }
 

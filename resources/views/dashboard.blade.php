@@ -1,8 +1,5 @@
 @extends('layouts.dashboard')
 
-
-
-
 @section('content')
     @role('admin')
         <p>Saya admin!</p>
