@@ -138,7 +138,7 @@ class KaryawanController extends Controller
         //     ]);
         //     $karyawan->save(); // Finally, save the record.
         // }
-        return redirect()->route('admin.create');
+        return redirect()->route('pegawai');
     }
 
     /**

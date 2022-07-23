@@ -1,8 +1,7 @@
-
 @extends('layouts.dashboard')
 
 @section('content')
-    <div class="bg-white border rounded px-4 pt-4">
+    <div class="bg-white border rounded px-4 pt-4" style="{{ $karyawans->count() < 3 ? 'height: 46vh' : '' }}">
         <nav class="mt-4" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>

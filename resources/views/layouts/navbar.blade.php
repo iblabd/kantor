@@ -28,7 +28,7 @@
                     <a href="{{ route('userProfile', [auth()->user()->karyawan->user_id]) }}"><i class="fa-solid fa-address-card"></i>Profile</a>
                 </li>
                 @endif
-                <li class="{{ $navlink == 'admin.create' || 'pegawai'  ? 'active' : '' }}"><a href="{{ route('pegawai') }}"><i
+                <li class="{{ $navlink == 'pegawai'  ? 'active' : '' }}"><a href="{{ route('pegawai') }}"><i
                             class="fa-solid fa-user-group"></i>Data Pegawai</a>
                 </li>
                 <li>

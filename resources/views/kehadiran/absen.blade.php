@@ -24,7 +24,7 @@
     </style>
   </head>
   <body>
-    @include('kehadiran.partials.backNavbar')
+    @include('partials.backNavbar')
     {{-- cardmain --}}
     <div class="card" style="width: 18rem;">
         <div class="card-body">
