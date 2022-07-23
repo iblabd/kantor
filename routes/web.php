@@ -75,10 +75,10 @@ Route::group(['middleware' => ['web', 'auth']], function(){
         Route::resource('/test/todo',TodoController::class);
 
         // pengumuman route
-        Route::get('/pengumuman',[PengumumanController::class, 'index'])->name('pengumuman');
-        Route::get('/pengumuman/create',[PengumumanController::class,'create']);
-        Route::post('/pengumuman/create/execute',[PengumumanController::class,'store'])->name('addNewItem');
-        Route::get('/peengumuman/{id}',[PengumumanController::class,'show']);
+        Route::get('/pengumuman',[PengumumanController::class, 'home'])->name('pengumuman');
+        Route::get('/pengumuman/add',[PengumumanController::class,'add'])->name('add');
+        // Route::post('/pengumuman/add/execute',[PengumumanController::class,'store'])->name('addNewItem');
+        Route::get('/peengumuman/{id}',[PengumumanController::class,'read']);
         Route::get('/pengumuman/{pengumuman:id}/edit',[PengumumanController::class,'edit'])->name('edit');
         Route::put('/pengumuman/{id}',[PengumumanController::class,'update']);
         Route::get('/pengumuman/{pengumuman:id}/delete',[PengumumanController::class,'destroy'])->name('delete');

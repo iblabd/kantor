@@ -23,9 +23,9 @@
                     <a href="{{ route('absen.kehadiran') }}"><i class="fa-solid fa-flag"></i>Absensi</a>
                 </li>
                 <small class="profile-usertitle-name">Pegawai</small>
-                <li>
+                {{-- <li>
                     <a href="{{ route('userProfile', [auth()->user()->karyawan->user_id]) }}"><i class="fa-solid fa-address-card"></i>Profile</a>
-                </li>
+                </li> --}}
                 <li class="{{ $navlink == 'pegawai' ? 'active' : '' }}"><a href="{{ route('pegawai') }}"><i
                             class="fa-solid fa-user-group"></i>Data Pegawai</a>
                 </li>

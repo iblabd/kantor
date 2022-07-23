@@ -2,116 +2,53 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pengumuman;
 use Illuminate\Http\Request;
+use App\article;
 
 class PengumumanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
+    public function home(){
 
-        return view('pengumuman', [
-            'pengumumans' => Pengumuman::all()
-        ]);
-        // // $pengumumans = Pengumuman::latest()->paginate(5);
-        // return view('pengumuman',compact('pengumuman'))
-        //       ->with('i',(request()->input('page', 1) -1 )* 5);
+    	$articles = article::all();
+    	return view('home', ['articles' => $articles]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('create');
+    public function add(Request $request){
+    	$this->validate($request, [
+    		'title' => 'required',
+    		'description' => 'required']);
+    	$articles = new article;
+    	$articles->title = $request->input('title');
+    	$articles->description = $request->input('description');
+    	$articles->save();
+    	return redirect('/')->with('info', 'Post saved successfully!');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'judul' => 'required',
-            'isi' => 'required',
-            'waktu' => 'required',
-
-        ]);
-
-        Pengumuman::create($request->all());
-
-        return redirect()->route('pengumuman')
-              ->with('success','Pengumuman created successfully.');
+    public function update($id){
+    	$articles = article::find($id);
+    	return view('update', ['article' => $articles]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Pengumuman $pengumuman)
-    {
-        // return view('pengumuman');
+    public function edit(Request $request,$id){
+    	$this->validate($request, [
+    		'title' => 'required',
+    		'description' => 'required']);
+    	$data = array(
+    		'title' => $request ->input('title'),
+    		'description' => $request ->input('description')
+    		);
+    	article::where('id', $id)->update($data);
+    	return redirect('/')->with('info', 'update successfully!');
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $pengumuman = Pengumuman::find($id);
-        return view('edit')->with('pengumuman', $pengumuman);
+    public function read($id){
+    	$articles = article::find($id);
+    	return view('read', ['article' => $articles]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-
-        ]);
-
-        $pengumuman->update($request->all());
-
-        return redirect()->route('pengumuman')
-         ->with('success','Pengumuman updated successfully');
-    }
-
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Pengumuman $pengumuman)
-    {
-        $pengumuman->delete();
-
-        return redirect()->route('pengumuman')
-        ->with('success','Pengumuman deleted successfully');
-    }
-
-    public function pengumuman(){
-        return view('pengumuman');
+    public function delete($id){
+    	article::where('id', $id)->delete();
+    	return redirect('/')->with('info', 'Delete successfully');
     }
 }
