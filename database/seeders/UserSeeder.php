@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Karyawan;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserSeeder extends Seeder
 {
@@ -21,6 +23,17 @@ class UserSeeder extends Seeder
         ]);
 
         $admin->assignRole('admin');
+
+        $admin = Karyawan::create([
+            'nama' => 'admin',
+            'tanggalLahir' => '2000-01-01',
+            'jenisKelamin' => 'Laki-laki',
+            'telephone' => '83144791501',
+            'RiwayatPendidikan' => 'Sarjana',
+            'email' => 'admin@example.com',
+            'kota' => 'Bandung',
+            'Provinsi' => 'Jawa Barat'
+        ]);
 
         $user = User::create([
             'name' => 'User',

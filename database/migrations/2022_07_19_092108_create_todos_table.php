@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateTodosTable extends Migration
 {
@@ -15,12 +16,15 @@ class CreateTodosTable extends Migration
     {
         Schema::create('todos', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->date('due_date')->nullable();
-            $table->string('author')->nullable();
-            $table->string('status')->nullable();
-            $table->integer('priority')->default(1);
+            $table->string('name');
+            $table->string('description')->nullable();
+            $table->dateTime('due_date')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->foreignId('author');
+            $table->enum('status', ['berjalan', 'selesai', 'dibatalkan'])->default('berjalan');
+            $table->integer('priority')->default('1');
             $table->timestamps();
+
+            $table->foreign('author')->references('user_id')->on('karyawans');
         });
     }
 

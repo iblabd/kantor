@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use Illuminate\Http\Request;
+use App\Models\Todo;
+use App\Models\Item;
+use App\Models\Karyawan;
 
 class ProjectController extends Controller
 {
@@ -46,12 +49,63 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project)
+    public function indexTodo(Project $project)
     {
+        $todos = Todo::orderBy('priority')
+            ->where('project_id', $project->id)
+            ->get();
+
         return view('projects.show', [
-            'project' => $project
+            'project' => $project,
+            'todos' => $todos,
         ]);
     }
+
+    public function addTodo(Project $project)
+    {
+        return view('todo.create', [
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeTodo(Request $request, Project $project)
+    {
+        $date = $request->date;
+        $time = $request->time;
+
+        $due_date = $date . ' ' . $time;
+        $project_id = $project->id;
+        $author = Karyawan::where('user_id', auth()->user()->id)->first();
+
+        $todo = Todo::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'due_date' => $due_date,
+            'priority' => $request->priority,
+            'project_id' => $project_id,
+            'author' => $author->user_id
+        ]);
+
+
+        if ($request->items) {
+            foreach($request->items as $item){
+                if (empty($item)) continue;
+                Item::create([
+                    'title'  => $item,
+                    'todo_id'   => $todo->id
+                ]);
+            }
+        }
+
+        return redirect()->action([ProjectController::class, 'show', $request->project_id]);
+    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -77,7 +131,7 @@ class ProjectController extends Controller
     {
         $project=Project::find($project->id);
         $project->update($request->all());
-        return redirect()->action([ProjectController::class, 'show'], ['project' => $project]);
+        return redirect()->action([ProjectController::class, 'indexTodo'], ['project' => $project]);
     }
 
     /**

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Todo extends Model
 {
     use HasFactory;
-    protected $fillable = ['name','author','status','priority','due_date'];
+    protected $fillable = ['name','author','status','priority','due_date', 'project_id'];
 
     //items
     public function items()
@@ -16,7 +16,10 @@ class Todo extends Model
         return $this->hasMany(Item::class);
     }
 
-
+    public function postedBy()
+    {
+        return $this->belongsTo(Karyawan::class, 'author', 'user_id');
+    }
 
     protected $dates = ['due_date'];
     protected $casts = [
