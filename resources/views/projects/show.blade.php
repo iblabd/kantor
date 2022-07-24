@@ -38,9 +38,11 @@
             <p class="mt-3">{{ $project->description }}</p>
         </div>
 
-        <div class="d-flex justify-content-end">
-            <a name="" id="" class="btn btn-primary mb-2" href="{{ route('todo.create', $project->id) }}" role="button"><i
-                    class="fa fa-plus" aria-hidden="true"></i> Buat Tugas</a>
+        <div class="d-flex justify-content-end mb-2">
+            <button data-url="{{ route('todo.destroy.bulk') }}" class="btn btn-danger deleteRequest--bulk mr-2"
+                style="display: none;"><i class="fa fa-trash" aria-hidden="true"></i> Delete Selected</button>
+            <a name="" id="" class="btn btn-primary" href="{{ route('todo.create', $project->id) }}"
+                role="button"><i class="fa fa-plus" aria-hidden="true"></i> Buat Tugas</a>
         </div>
 
         <div class="container row mb-2">
@@ -60,10 +62,16 @@
         <div class="row">
             @foreach ($todos as $todo)
                 <div class="col-sm-6 my-2">
-                    <div class="card" data-bs-toggle="modal" data-bs-target="#customModal-{{ $todo->id }}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $todo->name }} <span
-                                    class="badge bg-primary">{{ $todo->status }}</span></h5>
+                    <div class="card todoCards">
+                        <div class="card-body mb-0 pb-0">
+                            <div class="d-flex justify-content-between">
+                                <h5 class="card-title">{{ $todo->name }} <span
+                                        class="badge bg-primary">{{ $todo->status }}</span></h5>
+                                <input type="checkbox" id="cp{{ $todo->id }}" value="{{ $todo->id }}"
+                                    class="mx-2">
+                            </div>
+                        </div>
+                        <div class="card-body" data-bs-toggle="modal" data-bs-target="#customModal-{{ $todo->id }}">
                             <p class="card-text">Batas Waktu: {{ $todo->due_date->format('d-m-Y') }}</p>
                             <div class="d-flex justify-content-end">
                                 <img src="https://picsum.photos/200" class="rounded-circle" width="32" />
@@ -112,32 +120,37 @@
                                 <div class="input-group mb-1 item">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
-                                          <input type="checkbox" aria-label="">
+                                            <input type="checkbox" aria-label="">
                                         </div>
                                     </div>
-                                     <input type="text" name="items[]" class="form-control form-control-sm" value="{{ $item->title }}">
-                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary btn-sm deleteItem--btn" type="button" >Delete</button>
-                                      </div>
+                                    <input type="text" name="items[]" class="form-control form-control-sm"
+                                        value="{{ $item->title }}">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary btn-sm deleteItem--btn"
+                                            type="button">Delete</button>
+                                    </div>
                                 </div>
                             @endforeach
 
                             <div class="input-group mb-1 item">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
-                                      <input type="checkbox" aria-label="">
+                                        <input type="checkbox" aria-label="">
                                     </div>
                                 </div>
-                                 <input type="text" name="items[]" class="form-control form-control-sm" placeholder="New Item" >
-                                  <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary btn-sm deleteItem--btn" type="button" >Delete</button>
-                                  </div>
+                                <input type="text" name="items[]" class="form-control form-control-sm"
+                                    placeholder="New Item">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary btn-sm deleteItem--btn"
+                                        type="button">Delete</button>
+                                </div>
                             </div>
                         </div>
 
                         <div class="col-12">
-                            <button class="btn btn-outline-success btn-sm addItem--btn"  type="button">Add Item</button>
-                            <button class="btn btn-outline-danger btn-sm removeSelected--btn"  type="button" style="display: none;">Remove Selected</button>
+                            <button class="btn btn-outline-success btn-sm addItem--btn" type="button">Add Item</button>
+                            <button class="btn btn-outline-danger btn-sm removeSelected--btn" type="button"
+                                style="display: none;">Remove Selected</button>
                         </div>
                     </div>
                     <div class="modal-footer">
