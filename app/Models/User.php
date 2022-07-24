@@ -53,6 +53,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Present::class);
     }
+
+    public function teams()
+    {
+        return $this->hasMany(Project::class);
+    }
 }
 
 

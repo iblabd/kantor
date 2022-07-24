@@ -10,11 +10,20 @@ class Project extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = [
-        'id', 'title', 'description', 'status'
-    ];
+        'id', 'title', 'description', 'status', 'role_id'];
 
     public function todo()
     {
         return $this->hasMany(Todo::class);
+    }
+
+    public function roles()
+    {
+        return $this->belongsTo('Spatie\Permission\Models\Role');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

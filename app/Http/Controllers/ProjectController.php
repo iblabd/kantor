@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Todo;
 use App\Models\Item;
 use App\Models\Karyawan;
+use App\Models\User;
+use Spatie\Permission\Models\Role;
 
 class ProjectController extends Controller
 {
@@ -39,7 +41,20 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $project = Project::create($request->all());
+        $rolename = date('mdYhi', time());
+        $role = Role::create(['name' => $rolename]);
+        $role_id = $role->id;
+
+        $project = Project::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'status' => $request->status,
+            'role_id' => $role_id
+        ]);
+
+        // $user = auth()->user()->id;
+        // $user->assignRole(1);
+
         return redirect()->action([ProjectController::class, 'index']);
     }
 

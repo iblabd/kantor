@@ -18,8 +18,11 @@ class CreateProjectTable extends Migration
             $table->string('title');
             $table->string('description');
             $table->enum('status', ['berjalan', 'selesai', 'dibatalkan'])->default('berjalan');
+            $table->foreignId('role_id');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('role_id')->references('id')->on('roles');
         });
     }
 
