@@ -28,8 +28,13 @@
                     <a href="{{ route('userProfile', [auth()->user()->karyawan->user_id]) }}"><i class="fa-solid fa-address-card"></i>Profile</a>
                 </li>
                 @endif
+                <small class="profile-usertitle-name">Admin Tools</small>
                 <li class="{{ $navlink == 'pegawai'  ? 'active' : '' }}"><a href="{{ route('pegawai') }}"><i
                             class="fa-solid fa-user-group"></i>Data Pegawai</a>
+                </li>
+                <li><a href="{{ route('kehadiran.index') }}"><i class="fa-solid fa-clipboard"
+                    ></i>
+                    Rekap Absen</a>
                 </li>
                 <li>
                     <a href="#"
