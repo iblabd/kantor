@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
         $admin->assignRole('admin');
 
         $admin = Karyawan::create([
-            'nama' => 'admin',
+            'nama' => 'Admin',
             'tanggalLahir' => '2000-01-01',
             'jenisKelamin' => 'Laki-laki',
             'telephone' => '83144791501',
@@ -42,5 +42,16 @@ class UserSeeder extends Seeder
         ]);
 
         $user->assignRole('user');
+
+        $user = Karyawan::create([
+            'nama' => 'User',
+            'tanggalLahir' => '2000-01-01',
+            'jenisKelamin' => 'Laki-laki',
+            'telephone' => '83144791501',
+            'RiwayatPendidikan' => 'Sarjana',
+            'email' => 'user@example.com',
+            'kota' => 'Bandung',
+            'Provinsi' => 'Jawa Barat'
+        ]);
     }
 }

@@ -31,7 +31,7 @@
                     <img src="https://picsum.photos/200" class="rounded-circle" width="40" />
                 </div>
                 <div class="col">
-                    <button type="button" class="btn btn-light"><i class="fa fa-plus" aria-hidden="true"></i>
+                    <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#assigntopr"><i class="fa fa-plus" aria-hidden="true"></i>
                         Tambah</button>
                 </div>
             </div>
@@ -161,4 +161,54 @@
             </div>
         </div>
     @endforeach
+
+    <!-- Modal -->
+    <div class="modal fade" id="assigntopr" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-dialog-scrollable">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tambah Anggota</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body pt-0">
+                    <div class="bg-light sticky-top">
+                        <form role="search">
+                            <div class="input-group py-2">
+                                <input class="form-control border-end-0 border" type="search"
+                                    placeholder="Cari nama, email" value="" id="search-input" role="search">
+                                <span class="input-group-append">
+                                    <button class="btn btn-outline-secondary bg-white border-start-0 border ms-n3"
+                                        type="button">
+                                        <i class="fa fa-search link-primary"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                    <table style="min-width: 100%">
+                        @foreach ($karyawans as $karyawan)
+                            <tr height="48px">
+                                <td class="" width="10%"><img src="https://picsum.photos/200"
+                                        class="rounded-circle" width="32" /></td>
+                                <td class="align-middle" width="68%">
+                                    <h6 class="mb-0">{{ $karyawan->nama }}</h6><small>{{ $karyawan->email }}</small>
+                                    <form action="{{ route('projects.assign', $project->id) }}" method="POST">
+                                        @csrf
+                                        @method('POST')
+                                        <input type="text" class="form-control d-none" name="karyawan_id"
+                                            id="" value="{{ $karyawan->user_id }}">
+                                        <input type="text" class="form-control d-none" name="project_id"
+                                            id="" value="{{ $project->role_id }}">
+                                </td>
+                                <td class="text-center" width="22%"><button type="submit" class="btn btn-primary"><i
+                                            class="fa fa-plus" aria-hidden="true"></i>Tambah</button></td>
+                                </form>
+                            </tr>
+                        @endforeach
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

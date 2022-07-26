@@ -19,7 +19,22 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        $roles = auth()->user()->roles->pluck('id')->toArray();
+
+        // if(array_search(1, $roles) !== false){
+        //     $projects = Project::all();
+        // }else{
+        //     $projects = Project::where('role_id', $role)->get();
+        // }
+
+        foreach($roles as $role){
+            if($role == 1){
+                $projects = Project::all();
+            }else {
+                $projects = Project::where('role_id', $role)->get();
+            }
+        }
+
         return view('projects.index', ['projects'=>$projects]);
     }
 
@@ -64,15 +79,22 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function indexTodo(Project $project)
+    public function indexTodo(Project $project, Request $request)
     {
-        $todos = Todo::orderBy('priority')
-            ->where('project_id', $project->id)
-            ->get();
+        $roles = auth()->user()->roles->pluck('id')->toArray();
+
+        if(array_search($project->role_id, $roles) || array_search(1, $roles) !== false){
+            $todos = Todo::where('project_id', $project->id)->orderBy('priority')->get();
+        }else{
+            return redirect()->action([ProjectController::class, 'index']);
+        }
+
+        $karyawans = Karyawan::all();
 
         return view('projects.show', [
             'project' => $project,
             'todos' => $todos,
+            'karyawans' => $karyawans
         ]);
     }
 
@@ -160,5 +182,16 @@ class ProjectController extends Controller
         $project=Project::find($project->id);
         $project->delete();
         return redirect()->action([ProjectController::class, 'index']);
+    }
+
+    public function assign(Project $project, Request $request)
+    {
+        // $project=Project::find($project->id);
+        $role_id = $request->project_id;
+        $user = User::find($request->karyawan_id);
+
+        $user->assignRole($role_id);
+
+        return redirect()->action([ProjectController::class, 'indexTodo'], ['project' => $project]);
     }
 }
