@@ -28,7 +28,7 @@ Route::get('/', function() {
 // Route::get('/dashboard', [DashboardController::class, 'index']);
 require __DIR__.'/auth.php';
 
-Route::group(['middleware' => ['web', 'auth']], function(){
+Route::group(['middleware' => ['web', 'auth', 'verified']], function(){
 
     Route::group(['middleware' => ['role:admin']], function(){
         // admin route
@@ -50,7 +50,7 @@ Route::group(['middleware' => ['web', 'auth']], function(){
         Route::put('/projects/{project}', [ProjectController::class, 'update'])->name('projects.update');
         Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');
     });
-    Route::group(['middleware' => ['role:admin|user']], function(){
+    Route::group(['middleware' => ['role:admin|user', 'verified']], function(){
 
         Route::get('/dashboard', function(){
             return view('dashboard');

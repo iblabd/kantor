@@ -21,12 +21,6 @@ class ProjectController extends Controller
     {
         $roles = auth()->user()->roles->pluck('id')->toArray();
 
-        // if(array_search(1, $roles) !== false){
-        //     $projects = Project::all();
-        // }else{
-        //     $projects = Project::where('role_id', $role)->get();
-        // }
-
         foreach($roles as $role){
             if($role == 1){
                 $projects = Project::all();
@@ -186,7 +180,6 @@ class ProjectController extends Controller
 
     public function assign(Project $project, Request $request)
     {
-        // $project=Project::find($project->id);
         $role_id = $request->project_id;
         $user = User::find($request->karyawan_id);
 
