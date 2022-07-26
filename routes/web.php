@@ -57,7 +57,7 @@ Route::group(['middleware' => ['web', 'auth']], function(){
         })->name('dashboard');
 
         //projects
-        Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index')->name('projects.index');
+        Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
         Route::get('/projects/{project}', [ProjectController::class, 'indexTodo'])->name('projects.show');
         Route::post ('projects/{project}', [ProjectController::class, 'assign'])->name('projects.assign');
 

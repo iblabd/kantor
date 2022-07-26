@@ -195,25 +195,29 @@ class KaryawanController extends Controller
         // dd(Present::whereUserId($karyawan->user_id)->whereTanggal(date('Y-m-d'))->first());
 
         $warna;
-        $present = Present::whereUserId($karyawan->user_id)->whereTanggal(date('Y-m-d'))->first();
-        // if(!$present->keterangan){
-        //     return
+        $present = [
+            'keterangan' => 'none',
+            $warna = 'secondary',
+        ];
+        // dd($present);
+        // if($present)
+        // {
+        //     $present = Present::whereUserId($karyawan->user_id)->whereTanggal(date('Y-m-d'))->first();
+        //     // if(!$present->keterangan){
+        //     //     return
+        //     // }
+
+        //     if($present->keterangan == 'Telat'){
+        //         $warna = 'warning';
+        //     }else if($present->keterangan == 'Alpha'){
+        //         $warna = 'danger';
+        //     }else if($present->keterangan == 'Cuti'){
+        //         $warna = 'info';
+        //     }else{
+        //         $warna = 'success';
+        //     }
         // }
 
-        if($present->keterangan == 'Telat'){
-            $warna = 'warning';
-        }else if($present->keterangan == 'Alpha'){
-            $warna = 'danger';
-        }else if($present->keterangan == 'Cuti'){
-            $warna = 'info';
-        }else{
-            $warna = 'success';
-        }
-
-        if(!$present->keterangan){
-            $present = null;
-            $warna = null;
-        }
         // dd($warna);
         return view('karyawan.userInfo', [
             'karyawan' => $karyawan,

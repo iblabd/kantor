@@ -18,16 +18,22 @@
         <div class="profile-usermenu">
             <ul class="nav flex-column">
                 <li class="{{ $navlink == 'dashboard' ? 'active' : '' }}"><a href="{{ route('dashboard') }}"><i
-                            class="fa-solid fa-house"></i>Dasbor</a></li>
+                            class="fa-solid fa-house"></i>Dasboard</a></li>
                 <li>
                     <a href="{{ route('absen.kehadiran') }}"><i class="fa-solid fa-flag"></i>Absensi</a>
                 </li>
                 <small class="profile-usertitle-name">Pegawai</small>
+
                 @if (auth()->user()->karyawan)
                 <li>
                     <a href="{{ route('userProfile', [auth()->user()->karyawan->user_id]) }}"><i class="fa-solid fa-address-card"></i>Profile</a>
                 </li>
                 @endif
+                <li class="{{ $navlink == 'projects.index' ? 'active' : '' }}">
+                    <a href="{{ route('projects.index') }}"><i class="fa-solid fa-sheet-plastic"></i>Project</a>
+                </li>
+
+                @role('admin')
                 <small class="profile-usertitle-name">Admin Tools</small>
                 <li class="{{ $navlink == 'pegawai'  ? 'active' : '' }}"><a href="{{ route('pegawai') }}"><i
                             class="fa-solid fa-user-group"></i>Data Pegawai</a>
@@ -36,6 +42,7 @@
                     ></i>
                     Rekap Absen</a>
                 </li>
+                @endrole
                 <li>
                     <a href="#"
                         onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i
