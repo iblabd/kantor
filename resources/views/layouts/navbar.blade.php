@@ -1,7 +1,5 @@
 @php($navlink = Route::currentRouteName())
 
-
-
 <div class="col-md-3 mt-5">
     <div class="profile-sidebar bg-white border rounded">
         <div class="profile-userpic">
@@ -9,10 +7,12 @@
         </div>
         <div class="profile-usertitle">
             <div class="profile-usertitle-name">
-                <h5>Nama Orang</h5>
+                <h5>{{ auth()->user()->name }}</h5>
             </div>
             <div class="profile-usertitle-job">
-                <h6>Developer</h6>
+                @if(auth()->user()->karyawan)
+                <h6>{{ auth()->user()->karyawan->jabatan }}</h6>
+                @endif
             </div>
         </div>
         <div class="profile-usermenu">
