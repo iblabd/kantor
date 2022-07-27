@@ -16,7 +16,7 @@
                 @role('admin')
                     <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-white"><i class="fa fa-pencil"
                             aria-hidden="true"></i></a>
-                                <a type="submit" class="btn btn-white link-danger"><i class="fa fa-trash" aria-hidden="true" onclick="document.getElementById('deleteProject').submit();"></i></a>
+                                <a onclick="return confirm('Are you sure?')" class="btn btn-white link-danger"><i class="fa fa-trash" aria-hidden="true" onclick="document.getElementById('deleteProject').submit();"></i></a>
                 </h2>
                 <form action="{{ route('projects.destroy', $project->id) }}" method="POST" id="deleteProject">
                     @csrf
@@ -35,7 +35,7 @@
 
         <div class="d-flex justify-content-end mb-2">
             <button data-url="{{ route('todo.destroy.bulk') }}" class="btn btn-danger deleteRequest--bulk mr-2"
-                style="display: none;"><i class="fa fa-trash" aria-hidden="true"></i> Delete Selected</button>
+                style="display: none;"><i class="fa fa-trash" aria-hidden="true"></i> Hapus Dipilih</button>
             <a name="" id="" class="btn btn-primary" href="{{ route('todo.create', $project->id) }}"
                 role="button"><i class="fa fa-plus" aria-hidden="true"></i> Buat Tugas</a>
         </div>
