@@ -50,8 +50,6 @@
                 </li>
                 <form id="logout-form" method="POST" action="{{ route('logout') }}">
                     @csrf
-
-
                 </form>
             </ul>
         </div>
