@@ -16,8 +16,7 @@
                 @role('admin')
                     <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-white"><i class="fa fa-pencil"
                             aria-hidden="true"></i></a>
-                    <a onclick="return confirm('Are you sure?')" class="btn btn-white link-danger"><i class="fa fa-trash"
-                            aria-hidden="true" onclick="document.getElementById('deleteProject').submit();"></i></a>
+                                <a onclick="return confirm('Are you sure?')" class="btn btn-white link-danger"><i class="fa fa-trash" aria-hidden="true" onclick="document.getElementById('deleteProject').submit();"></i></a>
                 </h2>
                 <form action="{{ route('projects.destroy', $project->id) }}" method="POST" id="deleteProject">
                     @csrf
@@ -80,33 +79,46 @@
                         <p class="mb-2">Dibuat oleh: <a href="{{ route('detailPegawai', [$todo->author]) }}"
                                 class="link-primary">{{ $todo->postedBy['nama'] }}</a></p>
                         <p class="mb-4 mt-0">{{ $todo->description }}</p>
-                        <form action="{{ route('todo.markDone', $project->id) }}" method="POST" id="markDone">
-                            @csrf
-                            @method('PUT')
-                            <input type="text" class="form-control d-none" name="todoId" value="{{ $todo->id }}"></input>
-                            <input type="text" class="form-control d-none" name="status" value="selesai"></input>
-                        </form>
 
                         <div class="col-12 itemsContainer">
 
                             @foreach ($todo->items as $item)
-                                @if ($item->count() != 0)
-                                    <div class="input-group mb-1 item">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <input type="checkbox" aria-label="">
-                                            </div>
+                                <div class="input-group mb-1 item">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <input type="checkbox" aria-label="">
                                         </div>
-                                        <input type="text" name="items[]" class="form-control form-control-sm"
-                                            value="{{ $item->title }}">
                                     </div>
-                                @endif
+                                    <input type="text" name="items[]" class="form-control form-control-sm"
+                                        value="{{ $item->title }}">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary btn-sm deleteItem--btn"
+                                            type="button">Hapus</button>
+                                    </div>
+                                </div>
                             @endforeach
+
+                            <div class="input-group mb-1 item">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <input type="checkbox" aria-label="">
+                                    </div>
+                                </div>
+                                <input type="text" name="items[]" class="form-control form-control-sm"
+                                    placeholder="New Item">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary btn-sm deleteItem--btn"
+                                        type="button">Hapus</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <a onclick="document.getElementById('markDone').submit();" class="btn btn-primary">Tandai
-                            Selesai</a>
+
+                        <div class="col-12 mt-3 mb-5">
+                            <button class="btn btn-outline-success btn-sm addItem--btn" type="button"><i
+                                    class="fa fa-plus" aria-hidden="true"></i> Tambah Item</button>
+                            <button class="btn btn-outline-danger btn-sm removeSelected--btn" type="button"
+                                style="display: none;">Hapus Dipilih</button>
+                        </div>
                     </div>
                 </div>
             </div>
