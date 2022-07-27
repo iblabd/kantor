@@ -40,19 +40,6 @@
                 role="button"><i class="fa fa-plus" aria-hidden="true"></i> Buat Tugas</a>
         </div>
 
-        <div class="container row mb-2">
-            <div class="d-flex justify-content-between">
-                <div class="col-3">
-                    <select class="form-control" name="" id="">
-                        <option>Semua</option>
-                        <option>Berjalan</option>
-                        <option>Selesai</option>
-                        <option>Saya</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
         <div class="row">
             @foreach ($todos as $todo)
                 <div class="col-sm-6 my-2">
