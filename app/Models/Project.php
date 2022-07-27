@@ -12,7 +12,7 @@ class Project extends Model
     protected $fillable = [
         'id', 'title', 'description', 'status', 'role_id'];
 
-    public function todo()
+    public function todos()
     {
         return $this->hasMany(Todo::class);
     }

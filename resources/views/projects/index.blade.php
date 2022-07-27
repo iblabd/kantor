@@ -5,8 +5,8 @@
     <div class="bg-white border rounded px-4 pt-4 pb-4">
         <nav class="mt-4" aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item active">Proyek</li>
+                <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Beranda</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Projek</li>
             </ol>
         </nav>
         <div class="my-4">

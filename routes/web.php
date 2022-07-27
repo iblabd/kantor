@@ -74,12 +74,11 @@ Route::group(['middleware' => ['web', 'auth', 'verified']], function(){
         Route::get('/dashboard/userProfile/{karyawan:user_id}/status', [KaryawanController::class, 'userProfile'])->middleware(['auth'])->name('userProfile');
 
         // todo route
-        Route::resource('todo',TodoController::class);
+        Route::get('projects/{project:id}/todo/{todo:id}/edit', [ProjectController::class, 'editTodo'])->name('todo.edit');
+        Route::put('projects/{project:id}/todo/{todo:id}/edit', [ProjectController::class, 'updateTodo'])->name('todo.update');
         Route::get('/projects/{project:id}/add', [ProjectController::class, 'addTodo'])->name('todo.create');
         Route::post('/projects/{project:id}/add', [ProjectController::class, 'storeTodo'])->name('todo.store');
-        Route::post('todo/destory/bulk',[TodoController::class,'bulkDestroy'])->name('todo.destroy.bulk');
-        Route::post('todo/edit/bulk',[TodoController::class,'bulkEdit'])->name('todo.edit.bulk');
-        Route::put('todo/edit/bulk',[TodoController::class,'bulkUpdate'])->name('todo.edit.bulk.submit');
+        Route::post('todo/destory/bulk',[ProjectController::class,'bulkDestroy'])->name('todo.destroy.bulk');
 
         // pengumuman route
         Route::get('/pengumuman',[PengumumanController::class, 'home'])->name('pengumuman');

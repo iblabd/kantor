@@ -76,8 +76,10 @@ class ProjectController extends Controller
     public function indexTodo(Project $project, Request $request)
     {
         $roles = auth()->user()->roles->pluck('id')->toArray();
+        $projectMember = array_search($project->role_id, $roles);
+        $admin = array_search(1, $roles);
 
-        if(array_search($project->role_id, $roles) || array_search(1, $roles) !== false){
+        if($projectMember || $admin !== false){
             $todos = Todo::where('project_id', $project->id)->orderBy('priority')->get();
         }else{
             return redirect()->action([ProjectController::class, 'index']);
@@ -134,9 +136,55 @@ class ProjectController extends Controller
             }
         }
 
-        return redirect()->action([ProjectController::class, 'show', $request->project_id]);
+        return redirect()->action([ProjectController::class, 'indexTodo'], ['project' => $project]);
     }
 
+    public function editTodo(Project $project, Todo $todo)
+    {
+        return view('todo.edit', [
+            'project' => $project,
+            'todo' => $todo,
+        ]);
+    }
+
+    public function updateTodo(Request $request, Project $project, Todo $todo)
+    {
+        $date = $request->date;
+        $time = $request->time;
+
+        $due_date = $date . ' ' . $time;
+        $project_id = $project->id;
+        $author = Karyawan::where('user_id', auth()->user()->id)->first();
+
+        $todo->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'due_date' => $due_date,
+            'priority' => $request->priority,
+            'project_id' => $project_id,
+            'author' => $author->user_id
+        ]);
+
+
+        if ($request->items) {
+            foreach($request->items as $item){
+                if (empty($item)) continue;
+                Item::create([
+                    'title'  => $item,
+                    'todo_id'   => $todo->id
+                ]);
+            }
+        }
+
+        return redirect()->action([ProjectController::class, 'indexTodo'], ['project' => $project]);
+    }
+
+    public function bulkDestroy(Request $request)
+    {
+        Item::whereIn('todo_id',$request->ids)->delete();
+        Todo::whereIn('id',$request->ids)->delete();
+        return response()->json(['message' => 'Todo deleted successfully']);
+    }
 
     /**
      * Show the form for editing the specified resource.
