@@ -79,6 +79,7 @@ Route::group(['middleware' => ['web', 'auth', 'verified']], function(){
         Route::get('/projects/{project:id}/add', [ProjectController::class, 'addTodo'])->name('todo.create');
         Route::post('/projects/{project:id}/add', [ProjectController::class, 'storeTodo'])->name('todo.store');
         Route::post('todo/destory/bulk',[ProjectController::class,'bulkDestroy'])->name('todo.destroy.bulk');
+        Route::put('projects/{project:id}/', [ProjectController::class, 'updateTodoStatus'])->name('todo.markDone');
 
         // pengumuman route
         Route::get('/pengumuman',[PengumumanController::class, 'home'])->name('pengumuman');
