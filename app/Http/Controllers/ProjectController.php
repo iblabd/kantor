@@ -186,6 +186,16 @@ class ProjectController extends Controller
         return response()->json(['message' => 'Todo deleted successfully']);
     }
 
+    public function updateTodoStatus(Request $request, Project $project)
+    {
+        $todo=Todo::find($request->todoId);
+        $todo->update([
+            'status' => $request->status
+        ]);
+
+        return redirect()->action([ProjectController::class, 'indexTodo'], ['project' => $project]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
