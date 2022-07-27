@@ -24,11 +24,11 @@
 <td>{{ $article->title }}</td>
 <td>{{ $article->description }}</td>
 <td>
-<a href='{{ url("/read/{$article->id}") }}' class="read" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="read">&#xE86D;</i></a>
+<a href='{{ url("pengumuman/read/{$article->id}") }}' class="read" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="read">&#xE86D;</i></a>
 
-<a href='{{ url("/update/{$article->id}") }}' class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+<a href='{{ url("pengumuman/update/{$article->id}") }}' class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 
-<a href='{{ url("/delete/{$article->id}") }}' class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+<a href='{{ url("pengumuman/delete/{$article->id}") }}' class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 </td>
         </tr>
         @endforeach

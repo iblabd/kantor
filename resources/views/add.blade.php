@@ -1,7 +1,7 @@
 @include('inc.header')
 
 
-      <form method="POST" action="{{ url('/insert') }}">
+      <form method="POST" action="{{ url('/pengumuman/add') }}">
       {{csrf_field()}}
         <div class="modal-header">
           <h4 class="modal-title">Add Post</h4>

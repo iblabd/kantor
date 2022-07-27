@@ -81,13 +81,17 @@ Route::group(['middleware' => ['web', 'auth', 'verified']], function(){
         Route::post('todo/destory/bulk',[ProjectController::class,'bulkDestroy'])->name('todo.destroy.bulk');
         Route::put('projects/{project:id}/', [ProjectController::class, 'updateTodoStatus'])->name('todo.markDone');
 
+        // Route::get('/', 'PengumumanController@home');
+        Route::get('/add', function(){
+            return view('add');
+        });
         // pengumuman route
         Route::get('/pengumuman',[PengumumanController::class, 'home'])->name('pengumuman');
-        Route::get('/pengumuman/add',[PengumumanController::class,'add'])->name('add');
-        // Route::post('/pengumuman/add/execute',[PengumumanController::class,'store'])->name('addNewItem');
-        Route::get('/peengumuman/{id}',[PengumumanController::class,'read']);
-        Route::get('/pengumuman/{pengumuman:id}/edit',[PengumumanController::class,'edit'])->name('edit');
-        Route::put('/pengumuman/{id}',[PengumumanController::class,'update']);
-        Route::get('/pengumuman/{pengumuman:id}/delete',[PengumumanController::class,'destroy'])->name('delete');
+        Route::post('/pengumuman/add',[PengumumanController::class,'add'])->name('add');
+        Route::post('/pengumuman/add/execute',[PengumumanController::class,'store'])->name('addNewItem');
+        Route::get('/pengumuman/read/{id}',[PengumumanController::class,'read']);
+        Route::get('/pengumuman/edit/{id}',[PengumumanController::class,'edit'])->name('edit');
+        Route::get('/pengumuman/update/{id}',[PengumumanController::class,'update']);
+        Route::get('/pengumuman/delete/{id}',[PengumumanController::class,'delete'])->name('pengumuman.delete');
     });
 });
