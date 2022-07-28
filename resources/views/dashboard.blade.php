@@ -4,10 +4,10 @@
 
     @role('admin')
         <p>Saya admin!</p>
-        <table class="table table-striped table-hover">
+        <div class="table-responsive-sm">
+        <table border="2" class="table table-striped table-hover" style=" width: 200px; max-height: 200px; overflow:auto; display:inline-block" >
             <thead>
       <tr>
-      <th>ID</th>
       <th>Title</th>
       <th>Description</th>
 
@@ -18,7 +18,6 @@
           @foreach($articles->all() as $article)
           <tr>
 
-      <td>{{ $article->id }}</td>
       <td>{{ $article->title }}</td>
       <td>{{ $article->description }}</td>
               </tr>
@@ -27,6 +26,7 @@
 
             </tbody>
           </table>
+        </div>
     @else
         <p>Saya bukan admin...</p>
     @endrole
