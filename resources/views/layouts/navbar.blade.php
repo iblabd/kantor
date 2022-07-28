@@ -22,6 +22,9 @@
                 <li>
                     <a href="{{ route('absen.kehadiran') }}"><i class="fa-solid fa-flag"></i>Absensi</a>
                 </li>
+                <li>
+                    <a href="{{ route('pengumuman') }}"><i class="fa-solid fa-bullhorn"></i>Pengumuman</a>
+                </li>
                 <small class="profile-usertitle-name">Pegawai</small>
 
                 @if (auth()->user()->karyawan)

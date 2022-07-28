@@ -81,11 +81,10 @@ Route::group(['middleware' => ['web', 'auth', 'verified']], function(){
         Route::post('todo/destory/bulk',[ProjectController::class,'bulkDestroy'])->name('todo.destroy.bulk');
         Route::put('projects/{project:id}/', [ProjectController::class, 'updateTodoStatus'])->name('todo.markDone');
 
-        // Route::get('/', 'PengumumanController@home');
+        // Pengumuman route
         Route::get('/add', function(){
             return view('add');
         });
-        // pengumuman route
         Route::get('/pengumuman',[PengumumanController::class, 'home'])->name('pengumuman');
         Route::post('/pengumuman/add',[PengumumanController::class,'add'])->name('add');
         Route::post('/pengumuman/add/execute',[PengumumanController::class,'store'])->name('addNewItem');
@@ -93,5 +92,9 @@ Route::group(['middleware' => ['web', 'auth', 'verified']], function(){
         Route::get('/pengumuman/edit/{id}',[PengumumanController::class,'edit'])->name('edit');
         Route::get('/pengumuman/update/{id}',[PengumumanController::class,'update']);
         Route::get('/pengumuman/delete/{id}',[PengumumanController::class,'delete'])->name('pengumuman.delete');
+
+
+        //dashboard
+        Route::get('/dashboard',[DashboardController::class, 'home'])->name('dashboard');
     });
 });
