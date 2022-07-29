@@ -17,19 +17,20 @@
     <div class="table-wrapper">
       <div class="table-title">
         <div class="row">
-          <div class="col-sm-6"><h2>ANNOUCEMENT</h2></div>
-          <div class="col-sm-6">
-            <a href="{{ url('/add') }}" class="btn btn-success"><i class="me-2 fa-solid fa-square-plus"></i> Add Announcement</a>
-            </div>
+        <div class="d-flex justify-content-between">
+            <div class="col-sm-9"><h2>ANNOUCEMENT</h2></div>
+            <div class="col-sm-3 align-right">
+              <a href="{{ url('/add') }}" class="btn btn-success"><i class="me-2 fa-solid fa-square-plus"></i> Add Announcement</a>
+              </div>
         </div>
       </div>
 
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Action</th>
+            <th width="20%">Title</th>
+            <th width="60%">Description</th>
+            <th width="20%">Action</th>
             </tr>
         </thead>
 
@@ -40,7 +41,7 @@
             <td>{{ $article->title }}</td>
             <td>{{ $article->description }}</td>
             <td>
-                <a href="{{ route('edit.pengumuman', [$article -> id]) }}" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
+                <a href="{{ route('read.pengumuman', [$article -> id]) }}" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
                 <a href="{{ route('edit.pengumuman', [$article -> id]) }}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteEmployeeModal-{{$article -> id}}"><i class="fa-solid fa-trash"></i></button>
             </td>
