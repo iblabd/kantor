@@ -40,7 +40,7 @@
                         <form id="logout-form" method="POST" action="{{ route('logout') }}">
                             @csrf
                             <div class="d-grid">
-                                <button class="btn btn-link link-danger form-control-lg" type="submit">Logout</button>
+                                <button class="btn btn-danger form-control-lg" type="submit">Logout</button>
                             </div>
                         </form>
                     </div>
@@ -58,8 +58,8 @@
 
                         <form id="logout-form" method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <div class="d-grid">
-                                <button class="btn btn-link link-danger form-control-lg" type="submit">Logout</button>
+                            <div class="d-grid" style="margin-top: -10px">
+                                <button class="btn btn-danger form-control-lg" type="submit">Logout</button>
                             </div>
                         </form>
                     </div>

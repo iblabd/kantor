@@ -70,7 +70,7 @@ Route::group(['middleware' => ['web', 'auth', 'verified']], function(){
         Route::get('/dashboard/pegawai', [KaryawanController::class, 'index'])->name('pegawai');
         Route::get('/dashboard/pegawai/{karyawan:id}/status', [KaryawanController::class, 'show'])->name('detailPegawai');
         Route::get('/dashboard/userProfile/{karyawan:id}/status', [KaryawanController::class, 'userProfile'])->middleware(['auth'])->name('userProfile');
-        Route::get('/dashboard/pegawai/{karyawan:user_id}/status', [KaryawanController::class, 'show'])->middleware(['auth'])->name('detailPegawai');
+        Route::get('/dashboard/userProfile/{karyawan:user_id}/update', [KaryawanController::class, 'edit'])->middleware(['auth'])->name('editProfile');
         Route::get('/dashboard/userProfile/{karyawan:user_id}/status', [KaryawanController::class, 'userProfile'])->middleware(['auth'])->name('userProfile');
 
         // todo route

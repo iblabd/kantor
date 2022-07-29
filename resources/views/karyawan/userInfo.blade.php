@@ -8,7 +8,6 @@
 
     <!-- Bootstrap CSS v5.2.0-beta1 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"  integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   </head>
   <body>
   <nav class="navbar navbar-expand navbar-light bg-light">
@@ -91,14 +90,14 @@
                             <hr>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <a class="btn btn-primary ps-5 pe-5">Edit</a>
+                                    <a class="btn btn-primary ps-5 pe-5" href="{{ route('editProfile', [$karyawan->user_id]) }}">Edit</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- profile detail end -->
 
-                    <div class="row gutters-sm">
+                    {{-- <div class="row gutters-sm">
                        <!-- assignment  -->
                         <div class="col-sm-12 mb-3">
                             <div class="card h-100">
@@ -203,7 +202,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <!-- linkme end -->
+                            <!-- linkme end --> --}}
                         </div>
                     </div>
                 </div>

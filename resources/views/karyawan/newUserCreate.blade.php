@@ -25,7 +25,7 @@
                     <div class="form-group col-md-9">
                         <label for="username" class="form-label">Nama Lengkap<sup class="text-danger">*wajib</sup></label>
                         <input class="form-control" id="username" type="username" placeholder="Masukkan nama lengkap"
-                            name="nama" data-error="#username-error" required>
+                            name="nama" data-error="#username-error" value="{{ @$karyawan -> nama }}" required>
                         <span class="my-0 text-danger" id="username-error" for="username"></span>
                     </div>
                     <!-- end of nama lengkap -->
@@ -35,8 +35,8 @@
                         <label for="jenisKelamin" class="form-label">Jenis Kelamin<sup class="text-danger">*wajib</sup></label>
                         <select class="form-select" id="jenisKelamin" name="jenisKelamin" data-error="#jenisKelamin-error" required>
                             <option selected disabled>None</option>
-                            <option>Laki-laki</option>
-                            <option>Perempuan</option>
+                            <option {{ @$karyawan -> jenisKelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                            <option {{ @$karyawan -> jenisKelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
                         </select>
                         <span class="my-0 text-danger" id="jenisKelamin-error" for="jenisKelamin"></span>
                     </div>
@@ -46,7 +46,7 @@
                     <div class="form-group col-md-4">
                         <label for="tanggalLahir" class="form-label">Tanggal Lahir</label>
                         <input class="form-control" id="tanggalLahir" type="date" placeholder="Tanggal Lahir" name="tanggalLahir"
-                            data-error="#tanggalLahir-error">
+                            data-error="#tanggalLahir-error" value="{{ @$karyawan -> tanggalLahir }}">
                         <span class="my-0 text-danger" id="tanggalLahir-error" for="tanggalLahir"></span>
                     </div>
                     <!-- end of Tanggal Lahir -->
@@ -56,10 +56,10 @@
                         <label for="Pendidikan" class="form-label">Riwayat Pendidikan</label>
                         <select class="form-select" id="Pendidikan" name="riwayatPendidikan" data-error="#Pendidikan-error">
                             <option selected disabled>None</option>
-                            <option>Sarjana</option>
-                            <option>D1, D2, D3</option>
-                            <option>SMA/SMK</option>
-                            <option>Lainnya...</option>
+                            <option {{ @$karyawan -> riwayatPendidikan == 'Sarjana' ? 'selected' : '' }}>Sarjana</option>
+                            <option {{ @$karyawan -> riwayatPendidikan == 'D1, D2, D3' ? 'selected' : '' }}>D1, D2, D3</option>
+                            <option {{ @$karyawan -> riwayatPendidikan == 'SMA/SMK' ? 'selected' : '' }}>SMA/SMK</option>
+                            <option {{ @$karyawan -> riwayatPendidikan == 'Lainnya...' ? 'selected' : '' }}>Lainnya...</option>
                         </select>
                         <span class="my-0 text-danger" id="Pendidikan-error" for="Pendidikan"></span>
                     </div>
@@ -69,7 +69,7 @@
                     <div class="form-group col-md-12">
                         <label for="jabatan" class="form-label">Jabatan Sebagai</label>
                         <input class="form-control" list="datalistOptions" id="jabatan" placeholder="Menjabat sebagai..."
-                            name="jabatan">
+                            name="jabatan" value="{{ @$karyawan -> jabatan }}">
                             <datalist id="datalistOptions">
                                 <option value="Pimpinan">
                                 <option value="Wakil Pimpinan">
@@ -86,7 +86,7 @@
                         <div class="input-group">
                             <span class="input-group-text" id="nomorTelephone">+62</span>
                             <input type="text" class="form-control" id="nomorTelephone" aria-describedby="inputGroupPrepend2"
-                                placeholder="895XXXXXXX" name="telephone" data-error="#nomorTelephone-error" required>
+                                placeholder="895XXXXXXX" name="telephone" data-error="#nomorTelephone-error" value="{{ @$karyawan -> telephone }}" required>
                         </div>
                         <span class="my-0 text-danger" id="nomorTelephone-error" for="nomorTelephone"></span>
                     </div>
@@ -96,7 +96,7 @@
                     <div class="form-group col-md-8">
                         <label for="email" class="form-label">Email<sup class="text-danger">*wajib</sup></label>
                         <input class="form-control" id="email" type="email" placeholder="Enter email address" name="email"
-                            data-error="#email-error" required>
+                            data-error="#email-error" value="{{ @$karyawan -> email }}" {{ @$karyawan -> email ? 'disabled' : 'required' }}>
                         <span class="my-0 text-danger" id="email-error" for="email"></span>
                     </div>
                     <!-- end of email -->
@@ -105,49 +105,49 @@
                     <div class="form-group col-12">
                         <label for="alamat" class="form-label">Alamat</label>
                         <input class="form-control" id="alamat" type="text" placeholder="Masukkan alamat" name="alamat"
-                            data-error="#alamat-error">
+                            data-error="#alamat-error" value="{{ @$karyawan -> alamat }}">
                         <span class="my-0 text-danger" id="alamat-error" for="alamat"></span>
                     </div>
                     <div class="form-group col-6">
                         <label for="kelurahan" class="form-label">Kelurahan/Desa</label>
                         <input class="form-control" id="kelurahan" type="text" placeholder="Kelurahan" name="kelurahan"
-                            data-error="#kelurahan-error">
+                            data-error="#kelurahan-error" value="{{ @$karyawan -> kelurahan }}">
                         <span class="my-0 text-danger" id="kelurahan-error" for="kelurahan"></span>
                     </div>
                     <div class="form-group col-6">
                         <label for="kecamatan" class="form-label">Kecamatan</label>
                         <input class="form-control" id="kecamatan" type="text" placeholder="Kecamatan" name="kecamatan"
-                            data-error="#kecamatan-error">
+                            data-error="#kecamatan-error" value="{{ @$karyawan -> kecamatan }}">
                         <span class="my-0 text-danger" id="kecamatan-error" for="kecamatan"></span>
                     </div>
                     <div class="form-group col-6">
                         <label for="kota" class="form-label">Kota<sup class="text-danger">*wajib</sup></label>
                         <input class="form-control" id="kota" type="text" placeholder="Kota" name="kota"
-                            data-error="#kota-error" required>
+                            data-error="#kota-error" value="{{ @$karyawan -> kota }}" required>
                         <span class="my-0 text-danger" id="kota-error" for="kota"></span>
                     </div>
                     <div class="form-group col-6">
                         <label for="provinsi" class="form-label">Provinsi<sup class="text-danger">*wajib</sup></label>
                         <input class="form-control" id="provinsi" type="text" placeholder="Provinsi" name="provinsi"
-                            data-error="#provinsi-error" required>
+                            data-error="#provinsi-error" value="{{ @$karyawan -> provinsi }}" required>
                         <span class="my-0 text-danger" id="provinsi-error" for="provinsi"></span>
                     </div>
                     <div class="form-group col-3">
                         <label for="rt" class="form-label">RT</label>
                         <input class="form-control" id="rt" type="text" placeholder="001" name="rt"
-                            data-error="#rt-error">
+                            data-error="#rt-error" value="{{ @$karyawan -> rt }}">
                         <span class="my-0 text-danger" id="rt-error" for="rt"></span>
                     </div>
                     <div class="form-group col-3">
                         <label for="rw" class="form-label">RW</label>
                         <input class="form-control" id="rw" type="text" placeholder="001" name="rw"
-                            data-error="#rw-error">
+                            data-error="#rw-error" value="{{ @$karyawan -> rw }}">
                         <span class="my-0 text-danger" id="rw-error" for="rw"></span>
                     </div>
                     <div class="form-group col-6">
                         <label for="kodePos" class="form-label">Kode Pos</label>
                         <input class="form-control" id="kodePos" type="text" placeholder="Kode Pos" name="pos"
-                            data-error="#kodePos-error">
+                            data-error="#kodePos-error" value="{{ @$karyawan -> pos }}">
                         <span class="my-0 text-danger" id="kodePos-error" for="kodePos"></span>
                     </div>
                     <!-- end of alamat -->
@@ -160,7 +160,7 @@
                     </div>
                     <!-- end of file -->
 
-                    <!-- findme -->
+                    {{-- <!-- findme -->
                     <label for="inputEmail4" class="form-label" style="margin-bottom: -0.3rem;">Social Media</label>
                     <!-- linkedin -->
                     <div class="col-4">
@@ -259,7 +259,7 @@
                     </div>
                     <div id="emailHelp" class="form-text">checkbox jika meiliki akun social tersebut</div>
 
-                    <!-- end of findme -->
+                    <!-- end of findme --> --}}
 
                     <div class="col-12">
                         <div class="form-check form-switch">
