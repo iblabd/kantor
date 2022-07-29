@@ -22,9 +22,6 @@
                 <li>
                     <a href="{{ route('absen.kehadiran') }}"><i class="fa-solid fa-flag"></i>Absensi</a>
                 </li>
-                <li>
-                    <a href="{{ route('pengumuman') }}"><i class="fa-solid fa-bullhorn"></i>Pengumuman</a>
-                </li>
                 <small class="profile-usertitle-name">Pegawai</small>
 
                 @if (auth()->user()->karyawan)
@@ -40,6 +37,9 @@
                 <small class="profile-usertitle-name">Admin Tools</small>
                 <li class="{{ $navlink == 'pegawai'  ? 'active' : '' }}"><a href="{{ route('pegawai') }}"><i
                             class="fa-solid fa-user-group"></i>Data Pegawai</a>
+                </li>
+                <li>
+                    <a href="{{ route('pengumuman') }}"><i class="fa-solid fa-bullhorn"></i>Pengumuman</a>
                 </li>
                 <li><a href="{{ route('kehadiran.index') }}"><i class="fa-solid fa-clipboard"
                     ></i>
