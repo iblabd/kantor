@@ -8,7 +8,7 @@ use App\article;
 class PengumumanController extends Controller
 {
     public function home(){
-
+// yola
     	$articles = article::all();
     	return view('home', ['articles' => $articles]);
     }
