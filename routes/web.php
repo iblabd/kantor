@@ -89,7 +89,7 @@ Route::group(['middleware' => ['web', 'auth', 'verified']], function(){
         Route::post('/pengumuman/add',[PengumumanController::class,'add'])->name('add');
         Route::post('/pengumuman/add/execute',[PengumumanController::class,'store'])->name('addNewItem');
         Route::get('/pengumuman/read/{id}',[PengumumanController::class,'read']);
-        Route::get('/pengumuman/edit/{id}',[PengumumanController::class,'edit'])->name('edit');
+        Route::get('/pengumuman/edit/{id}',[PengumumanController::class,'edit'])->name('edit.pengumuman');
         Route::get('/pengumuman/update/{id}',[PengumumanController::class,'update']);
         Route::get('/pengumuman/delete/{id}',[PengumumanController::class,'delete'])->name('pengumuman.delete');
 

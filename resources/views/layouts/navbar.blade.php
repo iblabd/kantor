@@ -38,7 +38,15 @@
                 <li class="{{ $navlink == 'pegawai'  ? 'active' : '' }}"><a href="{{ route('pegawai') }}"><i
                             class="fa-solid fa-user-group"></i>Data Pegawai</a>
                 </li>
-                <li>
+                <li class="
+                <?php
+                    if ($navlink == 'pengumuman') {
+                            echo "active";
+                        } else if ($navlink == 'add') {
+                            echo "active";
+                        }
+                ?>
+                ">
                     <a href="{{ route('pengumuman') }}"><i class="fa-solid fa-bullhorn"></i>Pengumuman</a>
                 </li>
                 <li><a href="{{ route('kehadiran.index') }}"><i class="fa-solid fa-clipboard"
