@@ -202,14 +202,20 @@ class KaryawanController extends Controller
 
             // dd($karyawan->user_id);
             $present = Present::whereUserId($karyawan->user_id)->whereTanggal(date('Y-m-d'))->first();
-            if($present->keterangan == 'Telat'){
-                $warna = 'warning';
-            }else if($present->keterangan == 'Alpha'){
-                $warna = 'danger';
-            }else if($present->keterangan == 'Cuti'){
-                $warna = 'info';
+            if(is_null($present)){
+                $present = 'None';
+                $warna = 'secondary';
+                // dd($present);
             }else{
-                $warna = 'success';
+                if($present->keterangan == 'Telat'){
+                    $warna = 'warning';
+                }else if($present->keterangan == 'Alpha'){
+                    $warna = 'danger';
+                }else if($present->keterangan == 'Cuti'){
+                    $warna = 'info';
+                }else{
+                    $warna = 'success';
+                }
             }
         // }
 
