@@ -32,7 +32,7 @@
                     </div>
                 @endforeach
             @else
-                <div class="alert alert-warning">Tidak ada data karyawan</div>
+                <div class="alert alert-warning">Tidak ada pengumuman</div>
             @endif
         </div>
 
