@@ -24,14 +24,13 @@
                     </class>
                     @endif
                     @role('admin')
-                    @if ($karyawans->count() > 12)
-                        <div class="col-md-4 offset-md-4 text-right">
-                    @else
-                        <div class="col-md-4">
-                    @endif
-
-                        <a class="btn btn-outline-primary" href="{{ route('admin.create') }}"> <i class="fa-solid fa-user-group"></i> Tambah Pegawai</a>
-                    </div>
+                        @if ($karyawans->count() > 12)
+                            <div class="col-md-4 offset-md-4 text-right">
+                        @else
+                            <div class="col-md-4">
+                        @endif
+                            <a class="btn btn-outline-primary" href="{{ route('admin.create') }}"> <i class="fa-solid fa-user-group"></i> Tambah Pegawai</a>
+                        </div>
                     @endrole
                 </div>
             </div>
@@ -43,7 +42,6 @@
                             <th>Kelamin</th>
                             <th>Status</th>
                             <th>No. HP</th>
-                            <th>Aktivitas</th>
                             <th>Alamat</th>
                             <th>Pendidikan</th>
                         </tr>
@@ -56,7 +54,6 @@
                                 <td class="text-nowrap text-center">{{ $karyawan->jenisKelamin }}</td>
                                 <td class="text-nowrap text-center">{{ $karyawan->jabatan }}</td>
                                 <td class="text-nowrap">(+62) {{ $karyawan->telephone }}</td>
-                                <td class="text-nowrap text-center">Lembur</td>
                                 <td style="min-width: 240px;">{{ $karyawan->alamat }},
                                     RT{{ $karyawan->rt }}/RW{{ $karyawan->rw }}, {{ $karyawan->kelurahan }},
                                     {{ $karyawan->kecamatan }}, {{ $karyawan->kota }}, ID {{ $karyawan->pos }}</td>

@@ -10,11 +10,18 @@
     <script src="https://kit.fontawesome.com/b397b32336.js" crossorigin="anonymous"></script>
   </head>
   <body>
-    <div class="container-fluid mb-5" style="width: 90%">
-        @yield('header')
-    </div>
+    <div class="container-fluid" style="width: 90%">
+        <nav class="mt-4" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Beranda</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('absen.kehadiran') }}">Absen</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Rekap Absen</li>
+            </ol>
+        </nav>
 
-    <div class="container">
+        <div class="mb-5">
+            @yield('header')
+        </div>
         @yield('body')
     </div>
 
