@@ -1,6 +1,6 @@
-@include('inc.header')
+@extends('layouts.dashboard')
 
-
+@section('content')
       <form method="get" action="{{ url('/pengumuman/edit',array($article->id)) }}">
       {{csrf_field()}}
         <div class="modal-header">
@@ -25,6 +25,4 @@
           <input type="submit" class="btn btn-success" value="submit">
         </div>
       </form>
-
-
-@include('inc.footer')
+@endsection

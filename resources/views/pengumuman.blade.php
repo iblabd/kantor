@@ -1,8 +1,8 @@
 @extends('layouts.dashboard')
 
-@section('customStyle')
-    <script type="text/javascript" src="{{ url('js/index.js') }}"></script>
-@endsection
+{{-- @section('customStyle')
+    <script type="text/javascript" src="{{ url('../../js/index.js') }}"></script>
+@endsection --}}
 
 
 @section('content')
@@ -41,13 +41,12 @@
             <td>{{ $article->title }}</td>
             <td>{{ $article->description }}</td>
             <td>
-                <a href="{{ route('read.pengumuman', [$article -> id]) }}" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a>
-                <a href="{{ route('edit.pengumuman', [$article -> id]) }}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteEmployeeModal-{{$article -> id}}"><i class="fa-solid fa-trash"></i></button>
+                {{-- <a href="{{ route('read.pengumuman', [$article -> id]) }}" class="btn btn-primary"><i class="fa-solid fa-eye"></i></a> --}}
+                <a href="{{ url("/pengumuman/update/{$article->id}") }}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteEmployeeModal-{{$article ->id}}"><i class="fa-solid fa-trash"></i></button>
             </td>
         </tr>
 
-        <!-- Delete Modal HTML -->
         <!-- Button trigger modal -->
         <!-- Modal -->
         <div class="modal fade" id="deleteEmployeeModal-{{$article -> id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
