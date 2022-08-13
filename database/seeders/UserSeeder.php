@@ -29,11 +29,18 @@ class UserSeeder extends Seeder
             'nama' => 'Admin',
             'tanggalLahir' => '2000-01-01',
             'jenisKelamin' => 'Laki-laki',
-            'telephone' => '83144791501',
-            'RiwayatPendidikan' => 'Sarjana',
+            'telephone' => '831000000000',
+            'jabatan' => 'Admin',
+            'riwayatPendidikan' => 'Sarjana',
             'email' => 'admin@example.com',
-            'kota' => 'Bandung',
-            'Provinsi' => 'Jawa Barat'
+            'alamat' => 'Jl. Kebon Kacang',
+            'kelurahan' => 'Kebon Kacang',
+            'kecamatan' => 'Kebon Kacang',
+            'rt' => '001',
+            'rw' => '002',
+            'pos' => '12345',
+            'kota' => 'Kota Bandung',
+            'provinsi' => 'Jawa Barat'
         ]);
 
         $user = User::create([
@@ -48,11 +55,18 @@ class UserSeeder extends Seeder
             'nama' => 'User',
             'tanggalLahir' => '2000-01-01',
             'jenisKelamin' => 'Laki-laki',
-            'telephone' => '83144791501',
-            'RiwayatPendidikan' => 'Sarjana',
+            'telephone' => '831000000000',
+            'jabatan' => 'User',
+            'riwayatPendidikan' => 'Sarjana',
             'email' => 'user@example.com',
-            'kota' => 'Bandung',
-            'Provinsi' => 'Jawa Barat'
+            'alamat' => 'Jl. Kebon Kacang',
+            'kelurahan' => 'Kebon Kacang',
+            'kecamatan' => 'Kebon Kacang',
+            'rt' => '001',
+            'rw' => '002',
+            'pos' => '12345',
+            'kota' => 'Kota Bandung',
+            'provinsi' => 'Jawa Barat'
         ]);
     }
 }
